@@ -9,6 +9,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.2)
       actionpack (= 5.0.2)
@@ -230,7 +231,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.1)
-  rails-assets-tether (>= 1.1.0)
+  rails-assets-tether (>= 1.1.0)!
   rails_12factor
   rails_utils
   sass-rails (~> 5.0)

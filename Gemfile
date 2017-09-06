@@ -26,11 +26,13 @@ gem 'puma', '~> 3.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'font-awesome-sass', '~> 4.5.0'
 gem 'high_voltage', '~> 3.0.0'
-gem 'rails-assets-tether', '>= 1.1.0'
 gem 'simple_form'
 gem 'devise'
-# gem 'bootsy'
 gem 'bootsy', :git => "https://github.com/volmer/bootsy.git", :branch => "bootstrap-4"
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 group :development, :test do
   gem 'byebug', platform: :mri
