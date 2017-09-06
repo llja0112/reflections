@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
   end
 
   def show
     @user = User.find(user_id_params)
+    @reflections = @user.reflections
   end
 
   def update

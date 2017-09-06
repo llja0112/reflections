@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.3'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -25,7 +27,10 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'font-awesome-sass', '~> 4.5.0'
 gem 'high_voltage', '~> 3.0.0'
 gem 'rails-assets-tether', '>= 1.1.0'
+gem 'simple_form'
 gem 'devise'
+# gem 'bootsy'
+gem 'bootsy', :git => "https://github.com/volmer/bootsy.git", :branch => "bootstrap-4"
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -1,4 +1,17 @@
-.container
+.container.mb-4
   / .lead.text-center #{current_user.name.blank? ? current_user.email : current_user.name}'s Dashboard
   .lead.text-center.mt-2 #{current_user.email}'s Dashboard
   hr
+  - if @reflections.empty?
+    .jumbotron.text-center
+      = icon('clone', class: 'fa-4x')
+      h3 We cannot find any reflections that belong to you.
+      p.lead Click the button below to start creating a reflection.
+      a.btn.btn-primary href=add_reflection_path Create a reflection
+  - else
+    - @reflections.each do |reflection|
+      .card
+        h4.card-header = reflection.title
+        .card-block
+          p.card-text = strip_tags(reflection.story).truncate_words(100)
+          a.card-link.btn.btn-primary href=reflection_path(reflection) Read
