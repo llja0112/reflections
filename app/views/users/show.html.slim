@@ -1,1 +1,4 @@
-h1 Welcome #{@user.email}
+.container
+  / .lead.text-center #{current_user.name.blank? ? current_user.email : current_user.name}'s Dashboard
+  .lead.text-center.mt-2 #{current_user.email}'s Dashboard
+  hr

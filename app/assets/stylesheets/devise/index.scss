@@ -1,0 +1,38 @@
+.devise_sessions.new {
+  #user_email, #user_password, #user_signin, #user_signup {
+    width: 100%;
+  }
+
+  #user_email {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 16px;
+    margin-bottom: -1px;
+    padding: 10px;
+    height: 44px;
+  }
+
+  #user_password {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 44px;
+  }
+
+  #user_checkbox_field {
+    label {
+      font-weight: normal;
+      padding-left: 10px;
+    }
+  }
+
+  #user_signup {
+    margin-top: 5px;
+  }
+
+  #user_links {
+    padding: 0px 0px 20px;
+  }
+}
