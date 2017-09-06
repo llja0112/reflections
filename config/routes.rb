@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'add_reflection', to: 'reflections#add', as: 'add_reflection'
 
   post 'reflections/new', to: 'reflections#new', as: 'new_reflection'
+  post 'reflections/:id/update_privacy', to: 'reflections#update_privacy', as: 'update_reflection_privacy'
 end

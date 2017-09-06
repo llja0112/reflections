@@ -15,9 +15,23 @@
     - @reflections.each do |reflection|
       .card.mb-3
         .card-block
-          h4.card-title = reflection.title
+          h4.lead.text-primary = reflection.title
           p.card-text = strip_tags(reflection.story).truncate_words(100)
           p.card-text
-            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%d %b %Y")} 
+            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%d %b %Y")}
           a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
-          a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(reflection) Edit
+          - if reflection.user == current_user
+            a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(reflection) Edit
+            .card-link.btn-group.m-r-1
+              button#dropdownButton.btn.btn-sm.btn-secondary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = reflection.privacy=="Private" ? icon('lock') : icon('globe')
+              .dropdown-menu aria-labelledby="dropdownButton"
+                a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Private') data-method="post"
+                  - if reflection.privacy == "Private"
+                    span.text-primary #{icon('lock')} Private
+                  - else
+                    span #{icon('lock')} Private
+                a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Public') data-method="post"
+                  - if reflection.privacy == "Public"
+                    span.text-primary #{icon('globe')} Public
+                  - else
+                    span #{icon('globe')} Public

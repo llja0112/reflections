@@ -30,6 +30,13 @@ class ReflectionsController < ApplicationController
     redirect_to reflection_path(r)
   end
 
+  def update_privacy
+    r = Reflection.find(reflection_id_params)
+    r.privacy = reflection_privacy_params
+    r.save
+    redirect_to :back
+  end
+
   private
   def reflection_id_params
     params.require(:id)
@@ -39,5 +46,9 @@ class ReflectionsController < ApplicationController
     params.require(:reflection).permit(
       :title,
       :story)
+  end
+
+  def reflection_privacy_params
+    params.require(:privacy)
   end
 end
