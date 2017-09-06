@@ -1,4 +1,4 @@
-.container.mb-4
+.container.mb-2
   / .lead.text-center #{current_user.name.blank? ? current_user.email : current_user.name}'s Dashboard
   .lead.text-center.mt-2 #{current_user.email}'s Dashboard
   hr
@@ -9,9 +9,15 @@
       p.lead Click the button below to start creating a reflection.
       a.btn.btn-primary href=add_reflection_path Create a reflection
   - else
+    .row
+      .col-md-12
+        a.btn.btn-secondary.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
     - @reflections.each do |reflection|
-      .card
-        h4.card-header = reflection.title
+      .card.mb-3
         .card-block
+          h4.card-title = reflection.title
           p.card-text = strip_tags(reflection.story).truncate_words(100)
-          a.card-link.btn.btn-primary href=reflection_path(reflection) Read
+          p.card-text
+            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%d %b %Y")} 
+          a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
+          a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(reflection) Edit

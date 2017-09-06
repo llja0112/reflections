@@ -1,6 +1,6 @@
 .container
-  h3.mt-2 New Reflection
-  = simple_form_for @new_reflection, url: new_reflection_path do |f|
+  h3.mt-2 Edit Reflection
+  = simple_form_for @reflection, url: reflection_path(@reflection), method: :patch do |f|
     .row.form-group
       .col-md-12
         = f.input_field :title, placeholder: 'Reflection Title', class: 'form-control', id: 'reflectionTitle'
@@ -10,4 +10,4 @@
     .row.form-group
       .col-md-12
         = link_to 'back', user_path(current_user), class: 'btn btn-secondary'
-        = f.button :submit, 'Create New Reflection', class: 'btn btn-primary ml-1'
+        = f.button :submit, 'Save Reflection', class: 'btn btn-primary ml-1'

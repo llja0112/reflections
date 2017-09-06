@@ -18,6 +18,18 @@ class ReflectionsController < ApplicationController
     @reflection = Reflection.find(reflection_id_params)
   end
 
+  def edit
+    @reflection = Reflection.find(reflection_id_params)
+  end
+
+  def update
+    r = Reflection.find(reflection_id_params)
+    r.title = reflection_params['title']
+    r.story = reflection_params['story']
+    r.save
+    redirect_to reflection_path(r)
+  end
+
   private
   def reflection_id_params
     params.require(:id)

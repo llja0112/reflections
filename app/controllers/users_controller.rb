@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(user_id_params)
-    @reflections = @user.reflections
+    @reflections = @user.reflections.order('created_at DESC')
   end
 
   def update

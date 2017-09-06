@@ -1,5 +1,9 @@
 .container.mb-4
   .card.mt-3
-    h4.card-header = @reflection.title
     .card-block
+      h4.lead.text-primary = @reflection.title
       p.card-text = @reflection.story.html_safe
+      p.card-text
+        small.text-muted Created on #{@reflection.created_at.strftime("%d %b %Y")} by #{@reflection.user.email}
+      a.card-link.btn.btn-sm.btn-secondary href=user_path(current_user) Back
+      a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(@reflection) Edit
