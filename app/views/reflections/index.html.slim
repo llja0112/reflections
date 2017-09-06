@@ -1,0 +1,10 @@
+.container
+  .card-columns.mt-3
+    - @reflections.each do |reflection|
+      .card
+        .card-block
+          h4.lead.text-primary = reflection.title
+          p.card-text = strip_tags(reflection.story).truncate_words(100)
+          p.card-text
+            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%d %b %Y")}
+          a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More

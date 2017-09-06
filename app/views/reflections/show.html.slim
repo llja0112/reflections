@@ -5,5 +5,7 @@
       p.card-text = @reflection.story.html_safe
       p.card-text
         small.text-muted Created on #{@reflection.created_at.strftime("%d %b %Y")} by #{@reflection.user.email}
-      a.card-link.btn.btn-sm.btn-secondary href=user_path(current_user) Back
-      a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(@reflection) Edit
+
+      a.card-link.btn.btn-sm.btn-secondary href=url_for(:back) Back
+      - if user_signed_in?
+        a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(@reflection) Edit

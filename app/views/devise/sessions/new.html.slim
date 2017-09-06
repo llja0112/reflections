@@ -1,10 +1,17 @@
 .container
   .row.mt-4
     .col-md-4.offset-md-4.col-sm-8.offset-sm-2
-      h1
-        | LIC Reflections
+      h4
+        | The Journey
         br
-        small.text-muted Join us in the journey!
+        small.text-muted
+          span Write.
+          br
+          span Be present.
+          br
+          span Attend to emotions.
+          br
+          span Analyse and meaning making.
       hr
 
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

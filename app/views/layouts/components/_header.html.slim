@@ -3,17 +3,21 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-inverse
     .navbar-toggler-icon
   a.navbar-brand href=root_path
     span.hidden-xs-down #{icon('institution')}&nbsp;
-    span LIC: Journey
+    span The Journey
   .collapse.navbar-collapse#reflectionsCollapsedMenu
     .navbar-nav.mr-auto
       - if user_signed_in?
         a.nav-link.nav-item href=user_path(current_user.id)
           span #{icon('home')} Dashboard
+        a.nav-link.nav-item href=reflections_path
+          span #{icon('clone')} Reflections
       - else
-        a.nav-link.nav-item href=demo_path
-          span #{icon('rocket')} Demo
+        a.nav-link.nav-item href=reflections_path
+          span #{icon('clone')} Reflections
         a.nav-link.nav-item href=about_path
           span #{icon('road')} About
+        a.nav-link.nav-item href=demo_path
+          span #{icon('rocket')} Demo
     .navbar-nav
       - if user_signed_in?
         a.nav-link.nav-item href=destroy_user_session_path data-method='delete'

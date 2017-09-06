@@ -1,5 +1,9 @@
 class ReflectionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
+
+  def index
+    @reflections = Reflection.where(privacy: 1)
+  end
 
   def add
     @new_reflection = Reflection.new

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show, :update]
-  resources :reflections, only: [:show, :edit, :update]
+  resources :reflections, only: [:index, :show, :edit, :update]
 
   root 'home#index'
   get 'demo', to: 'home#demo'
