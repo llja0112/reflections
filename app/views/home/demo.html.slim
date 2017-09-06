@@ -1,0 +1,62 @@
+/ img.img-fluid src='https://s-media-cache-ak0.pinimg.com/originals/5c/25/3b/5c253ba885e7debe276cfef020d71f6e.jpg' alt="Responsive image"
+.bg-primary.text-white
+  .container.py-5
+    h1.display-4 Life is a journey. Not a destination.
+    small - Ralph Waldo Emerson
+
+.container
+  ul.timeline
+    li.timeline-inverted
+      .timeline-badge.primary = icon('sign-in')
+      .timeline-panel
+        .timeline-body
+          h4
+            span Start of&nbsp;
+            span.text-primary LIC Block 2
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        .timeline-heading
+          h4.timeline-title Reflections 1: An encounter in paediatrics endocrinology clinic
+          p
+            small.text-muted #{icon('clock-o')} Written by Anthony Li on 6th November 2017
+        .timeline-body
+          p “Take the seat, you are the doctor today.” The consultant directed me to her armchair. I nodded and took the seat with great trepidation. I tried hard to not let the anxiety show on my face. Before I could brace myself for the interview, the boy was already trotting into the room followed closely by his parents. The consultant made a quick introduction to the parents,
+          = link_to 'More ...', page_path('demo/reflection1')
+    li.timeline-inverted
+      .timeline-badge.danger = icon('sign-out')
+      .timeline-panel
+        .timeline-body
+          h4
+            span End of&nbsp;
+            span.text-danger LIC Block 2
+    li.timeline-inverted
+      .timeline-badge.primary = icon('sign-in')
+      .timeline-panel
+        .timeline-body
+          h4
+            span Start of&nbsp;
+            span.text-primary LIC Block 3
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        .timeline-heading
+          h4.timeline-title Reflections 2: "You must be very worried ..."
+          p
+            small.text-muted #{icon('clock-o')} Written by Anthony Li on 8th January 2017
+        .timeline-body
+          p It was 7.30am in the Obstetrics and Gynaecology ward. A cold Friday morning. The rain continued to pour outside as I looked out from the hospital windows. Bracing myself to approach a patient, I checked my equipment. Notebook check. Pen check. Stethoscope check. Logbook check. Checking my white coat one last time,
+          = link_to 'More ...', page_path('demo/reflection2')
+    li.timeline-inverted
+      .timeline-badge.danger = icon('sign-out')
+      .timeline-panel
+        .timeline-body
+          h4
+            span End of&nbsp;
+            span.text-danger LIC Block 3
+
+.bg-success.text-white
+  .container.py-5
+    h1.display-4 It is always ourseleves that we find at the end of the journey.
+    h1.display-4 The sooner we face it, the better.
+    small - Ella Maillart

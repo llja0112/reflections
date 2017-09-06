@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: reflections_development
+
+test:
+  <<: *default
+  database: <%= 'reflections_test' %>
+
+production:
+  <<: *default
+  database: refelctions_production
+  host: <%= ENV['REFLECTIONS_DATABASE_HOST'] %>
+  username: <%= ENV['REFLECTIONS_DATABASE_USERNAME'] || 'fa' %>
+  password: <%= ENV['REFLECTIONS_DATABASE_PASSWORD'] %>
