@@ -23,7 +23,7 @@ gem 'puma', '~> 3.0'
 # gem 'redis', '~> 3.0'
 
 # Gems that provided features unique to this project
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.0.0.beta'
 gem 'font-awesome-sass', '~> 4.5.0'
 gem 'high_voltage', '~> 3.0.0'
 gem 'simple_form'

@@ -11,19 +11,19 @@
   - else
     .row
       .col-md-12
-        a.btn.btn-secondary.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
+        a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
     - @reflections.each do |reflection|
       .card.mb-3
-        .card-block
+        .card-body
           h4.lead.text-primary = reflection.title
           p.card-text = strip_tags(reflection.story).truncate_words(100)
           p.card-text
             small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%d %b %Y")}
           a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
           - if reflection.user == current_user
-            a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(reflection) Edit
+            a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(reflection) Edit
             .card-link.btn-group.m-r-1
-              button#dropdownButton.btn.btn-sm.btn-secondary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = reflection.privacy=="Private" ? icon('lock') : icon('globe')
+              button#dropdownButton.btn.btn-sm.btn-light.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = reflection.privacy=="Private" ? icon('lock') : icon('globe')
               .dropdown-menu aria-labelledby="dropdownButton"
                 a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Private') data-method="post"
                   - if reflection.privacy == "Private"

@@ -2,7 +2,7 @@
   .card-columns.mt-3
     - @reflections.each do |reflection|
       .card
-        .card-block
+        .card-body
           h4.lead.text-primary = reflection.title
           p.card-text = strip_tags(reflection.story).truncate_words(100)
           p.card-text

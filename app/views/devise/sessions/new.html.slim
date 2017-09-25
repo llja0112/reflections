@@ -1,6 +1,6 @@
 .container
-  .row.mt-4
-    .col-md-4.offset-md-4.col-sm-8.offset-sm-2
+  .row.justify-content-center.mt-4
+    .col-md-4.col-sm-8
       h4
         | The Journey
         br
@@ -31,7 +31,7 @@
         .actions
           = f.submit "Sign In", id: 'user_signin', class: ['btn', 'btn-lg', 'btn-primary']
         #user_signup
-          = link_to 'Sign Up', new_user_registration_path, id: 'user_signup', class: ['btn', 'btn-lg', 'btn-secondary']
+          = link_to 'Sign Up', new_user_registration_path, id: 'user_signup', class: ['btn', 'btn-lg', 'btn-light']
       hr
 
       / h4.col-sm-12.text-center OR
