@@ -6,7 +6,7 @@
 <% can_edit = comment.can_be_edited_by?(user)
    can_delete = comment.can_be_deleted_by?(user) %>
 
-<% if can_edit && can_delete %>
+<% if can_edit || can_delete %>
   <button type="button" class="btn btn-light btn-sm dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= icon('ellipsis-h') %>
   </button>
@@ -15,7 +15,7 @@
       <%= link_to t('commontator.comment.actions.edit'),
                   commontator.edit_comment_path(comment),
                   id: "comment_#{comment.id.to_s}_edit_link",
-                  class: "comment_edit_link dropdown-item",
+                  class: "comment_edit_link dropdown-item small",
                   remote: true %>
     <% end %>
 
@@ -27,7 +27,7 @@
                   confirm: (!is_deleted ? t('commontator.comment.actions.confirm_delete') : nil),
                   method: :put,
                   id: "comment_#{comment.id.to_s}_#{del_string}_link",
-                  class: "comment_#{del_string}_link dropdown-item",
+                  class: "comment_#{del_string}_link dropdown-item small",
                   remote: true %>
     <% end %>
   </div>
