@@ -1,6 +1,6 @@
 .container.mb-4
   .card.mt-3
-    .card-block
+    .card-body
       h4.lead.text-primary = @reflection.title
       p.card-text = @reflection.story.html_safe
       p.card-text
@@ -9,3 +9,7 @@
       a.card-link.btn.btn-sm.btn-secondary href=url_for(:back) Back
       - if user_signed_in?
         a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(@reflection) Edit
+
+  .card.mt-3
+    .card-body
+      = commontator_thread(@reflection)

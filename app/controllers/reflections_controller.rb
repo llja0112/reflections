@@ -20,6 +20,7 @@ class ReflectionsController < ApplicationController
 
   def show
     @reflection = Reflection.find(reflection_id_params)
+    commontator_thread_show(@reflection)
   end
 
   def edit

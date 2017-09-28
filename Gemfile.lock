@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/lml/commontator.git
+  revision: 916a28c70ceece1eb488962c8ed0d8e276de8f06
+  branch: rails5
+  specs:
+    commontator (5.0.0)
+      jquery-rails
+      rails (>= 5.0)
+
+GIT
   remote: https://github.com/volmer/bootsy.git
   revision: e05d061c90a926cd98787b68149e45298ab715fe
   branch: bootstrap-4
@@ -223,6 +232,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta)
   bootsy!
   byebug
+  commontator!
   devise
   font-awesome-sass (~> 4.5.0)
   high_voltage (~> 3.0.0)
@@ -230,6 +240,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg
+  popper_js
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.1)

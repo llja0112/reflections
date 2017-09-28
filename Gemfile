@@ -19,6 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'rails_utils'
 gem 'puma', '~> 3.0'
+gem 'popper_js'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
@@ -29,6 +30,7 @@ gem 'high_voltage', '~> 3.0.0'
 gem 'simple_form'
 gem 'devise'
 gem 'bootsy', :git => "https://github.com/volmer/bootsy.git", :branch => "bootstrap-4"
+gem 'commontator', :git => "https://github.com/lml/commontator.git", :branch => "rails5"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

@@ -1,0 +1,34 @@
+<% # Clients of this partial must supply the following variables:
+   # comment
+   # user
+%>
+
+<% can_edit = comment.can_be_edited_by?(user)
+   can_delete = comment.can_be_deleted_by?(user) %>
+
+<% if can_edit && can_delete %>
+  <button type="button" class="btn btn-light btn-sm dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= icon('ellipsis-h') %>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    <% if can_edit %>
+      <%= link_to t('commontator.comment.actions.edit'),
+                  commontator.edit_comment_path(comment),
+                  id: "comment_#{comment.id.to_s}_edit_link",
+                  class: "comment_edit_link dropdown-item",
+                  remote: true %>
+    <% end %>
+
+    <% if can_delete %>
+      <% is_deleted = comment.is_deleted? %>
+      <% del_string = is_deleted ? 'undelete' : 'delete' %>
+      <%= link_to t("commontator.comment.actions.#{del_string}"),
+                  commontator.polymorphic_path([del_string, comment]),
+                  confirm: (!is_deleted ? t('commontator.comment.actions.confirm_delete') : nil),
+                  method: :put,
+                  id: "comment_#{comment.id.to_s}_#{del_string}_link",
+                  class: "comment_#{del_string}_link dropdown-item",
+                  remote: true %>
+    <% end %>
+  </div>
+<% end %>

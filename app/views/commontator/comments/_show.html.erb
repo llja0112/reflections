@@ -1,0 +1,46 @@
+<% # Clients of this partial must supply the following variables:
+   # comment
+   # user
+%>
+
+<% creator = comment.creator
+   name = Commontator.commontator_name(creator) || ''
+   link = Commontator.commontator_link(creator, main_app) || ''
+   avatar = Commontator.commontator_avatar(creator, self) || ''
+%>
+
+<div id="comment_<%= comment.id.to_s %>_div" class="media mb-4">
+  <span id="comment_<%= comment.id.to_s %>_avatar_span" class="d-flex align-self-start mr-3">
+    <%= avatar %>
+  </span>
+  <div class="media-body">
+    <span class="mt-0 mb-1">
+      <strong id="comment_<%= comment.id.to_s %>_commontator_span" class="comment_commontator">
+        <%= link.blank? ? name : link_to(name, link) %>
+      </strong>
+    </span>
+    <div id="comment_<%= comment.id.to_s %>_actions_span" class="float-right comment_actions">
+      <%= render partial: 'commontator/comments/actions',
+      locals: { comment: comment,
+        user: user } %>
+    </div>
+    <span id="comment_<%= comment.id.to_s %>_votes_span" class="comment_votes">
+      <%= render partial: 'commontator/comments/votes',
+      locals: { comment: comment,
+        user: user } %>
+    </span>
+    <span id="comment_<%= comment.id.to_s %>_body_div" class="comment_body">
+      <%= render partial: 'commontator/comments/body',
+      locals: { comment: comment } %>
+    </span>
+    <% if comment.is_modified? %>
+      <span id="comment_<%= comment.id.to_s %>_updated_timestamp_span" class="small text-muted comment_timestamp">
+        <%= comment.updated_at.strftime("%B %-d, %Y at %l:%M%P") %> &middot; Edited
+      </span>
+    <% else %>
+      <span id="comment_<%= comment.id.to_s %>_created_timestamp_span" class="small text-muted comment_timestamp">
+        <%= comment.created_at.strftime("%B %-d, %Y at %l:%M%P") %>
+      </span>
+    <% end %>
+  </div>
+</div>
