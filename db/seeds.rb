@@ -12,6 +12,8 @@ admin = User.find_by(email: admin_email)
 if !admin
   admin = User.new({
     email: admin_email,
+    first_name: 'Lianjie Anthony'
+    last_name: 'Li',
     password: 'password',
     password_confirmation: 'password'
   })

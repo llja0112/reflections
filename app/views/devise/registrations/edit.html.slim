@@ -1,21 +1,21 @@
-/ .row.mb-2
-/   .col-md-4.offset-md-4.col-sm-8.offset-sm-2
-/     .card
-/       .card-block
-/         h3 Edit Name
-/         hr
-/         = simple_form_for current_user, url: user_path(current_user), method: :patch do |f|
-/           .field.mb-1
-/             label.form-control-label [for='firstName'] First Name
-/             = f.input_field :first_name, placeholder: 'First Name', class: 'form-control', id: 'firstName'
-/           .field.mb-2
-/             label.form-control-label [for='lastName'] Last Name
-/             = f.input_field :last_name, placeholder: 'Last Name', class: 'form-control', id: 'lastName'
-/           .field
-/             = f.button :submit, class: 'btn btn-primary'
-
-
 .row.my-2.justify-content-center
+  .col-md-4.col-sm-8
+    .card
+      .card-body
+        h3 Edit Name
+        hr
+        = simple_form_for current_user, url: user_path(current_user), method: :patch do |f|
+          .field.mb-1
+            label.form-control-label [for='firstName'] First Name
+            = f.input_field :first_name, placeholder: 'First Name', class: 'form-control', id: 'firstName'
+          .field.mb-2
+            label.form-control-label [for='lastName'] Last Name
+            = f.input_field :last_name, placeholder: 'Last Name', class: 'form-control', id: 'lastName'
+          .field
+            = f.button :submit, class: 'btn btn-primary'
+
+
+.row.mb-2.justify-content-center
   .col-md-4.col-sm-8
     .card
       .card-body
