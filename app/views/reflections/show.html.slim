@@ -10,6 +10,6 @@
       - if user_signed_in?
         a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(@reflection) Edit
 
-  .card.mt-3
+  #comments_section.card.mt-3
     .card-body
       = commontator_thread(@reflection)
