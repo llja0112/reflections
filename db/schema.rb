@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929075927) do
+ActiveRecord::Schema.define(version: 20170930040113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,26 @@ ActiveRecord::Schema.define(version: 20170929075927) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["commontable_id", "commontable_type"], name: "index_commontator_threads_on_c_id_and_c_type", unique: true, using: :btree
+  end
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.string   "member_type",     null: false
+    t.integer  "member_id",       null: false
+    t.string   "group_type"
+    t.integer  "group_id"
+    t.string   "group_name"
+    t.string   "membership_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["group_name"], name: "index_group_memberships_on_group_name", using: :btree
+    t.index ["group_type", "group_id"], name: "index_group_memberships_on_group_type_and_group_id", using: :btree
+    t.index ["member_type", "member_id"], name: "index_group_memberships_on_member_type_and_member_id", using: :btree
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reflections", force: :cascade do |t|

@@ -31,6 +31,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'bootsy', :git => "https://github.com/volmer/bootsy.git", :branch => "bootstrap-4"
 gem 'commontator', :git => "https://github.com/lml/commontator.git", :branch => "rails5"
+gem 'groupify'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
