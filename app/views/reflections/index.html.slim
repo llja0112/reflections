@@ -9,5 +9,8 @@
             small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%-d %B %Y")}
           a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
           a.card-link.btn.btn-sm.btn-secondary href="#{reflection_path(reflection)}#comments_section"
-            span.badge.badge-light #{reflection.thread.comments.count}
-            | &nbsp;Comments
+            - if reflection.thread.comments.count < 1
+              span Comments
+            - else
+              span.badge.badge-light #{reflection.thread.comments.count}
+              | &nbsp;Comments
