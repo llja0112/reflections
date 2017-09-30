@@ -18,7 +18,7 @@
           h4.lead.text-primary = reflection.title
           p.card-text = strip_tags(reflection.story).truncate_words(100)
           p.card-text
-            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%d %b %Y")}
+            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%-d %B %Y")}
           a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
           - if reflection.user == current_user
             a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(reflection) Edit
