@@ -1,24 +1,16 @@
-# README
+# Reflections
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About the project
 
-Things you may want to cover:
+This is a project developed by medical students from Duke NUS medical school's Longitudinal Integrated Clerkship Program. This project seeks to introduce and enhance lifelong introspection amongst medical professionals through the means of a web application.
 
-* Ruby version
+## Features of the application
 
-* System dependencies
+- Create reflections
+- Build a portfolio of reflections in the form of a timeline
+- Share with peers within the medical profession
+- Submit to medical education faculty for review, advice and critique
 
-* Configuration
+## Deployment instructions
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+_Under Construction ..._
