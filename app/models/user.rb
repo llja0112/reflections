@@ -7,4 +7,7 @@ class User < ApplicationRecord
 
   acts_as_commontator
   has_many :reflections
+
+  has_many :reflection_privacies, class_name: "Privacy", foreign_key: "authorised_personal_id"
+  has_many :visible_reflections, through: :reflection_privacies, source: :reflection
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930040113) do
+ActiveRecord::Schema.define(version: 20170930135322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(version: 20170930040113) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "privacies", force: :cascade do |t|
+    t.integer  "reflection_id"
+    t.integer  "authorised_personal_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["authorised_personal_id"], name: "index_privacies_on_authorised_personal_id", using: :btree
+    t.index ["reflection_id", "authorised_personal_id"], name: "index_privacies_on_reflection_id_and_authorised_personal_id", unique: true, using: :btree
+    t.index ["reflection_id"], name: "index_privacies_on_reflection_id", using: :btree
   end
 
   create_table "reflections", force: :cascade do |t|
