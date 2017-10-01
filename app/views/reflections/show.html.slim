@@ -10,11 +10,12 @@
       - if user_signed_in?
         a.card-link.btn.btn-sm.btn-secondary href=edit_reflection_path(@reflection) Edit
 
-  .card.mt-3
-    .card-body
-      .lead Reviews
-      .form-group
-        input.form-control.example-numbers
+  - if user_signed_in? && @reflection.user == current_user
+    .card.mt-3
+      .card-body
+        .lead Reviews
+        .form-group
+          input#review_input.form-control
 
   #comments_section.card.mt-3
     .card-body

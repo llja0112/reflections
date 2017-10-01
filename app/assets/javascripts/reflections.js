@@ -3,7 +3,6 @@ Reflections.reflections = Reflections.reflections || {};
 
 Reflections.reflections.show = {
   init: function() {
-    // console.log('Hello');
     var names = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('user_details'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -13,9 +12,7 @@ Reflections.reflections.show = {
       }
     });
 
-    // console.log(numbers.ttAdapter);
-
-    $('.example-numbers').typeahead({
+    $('#review_input').typeahead({
       minLength: 3
     }, {
       displayKey: 'user_details',
