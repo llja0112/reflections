@@ -34,7 +34,14 @@ Reflections.reflections.privacy = {
       }
     });
 
-    $('#share_input').tokenfield({
+    $('#share_input')
+    .on('tokenfield:createdtoken', function (e) {
+      var valid = e.hasOwnProperty('id')
+      if (!valid) {
+        $(e.relatedTarget).addClass('invalid')
+      }
+    })
+    .tokenfield({
       typeahead: [{
         minLength: 3
       }, {
@@ -43,20 +50,12 @@ Reflections.reflections.privacy = {
       }]
     });
 
+
     $('#share_btn').click(function(){
       console.log('clicked');
       var tokens = $('#share_input').tokenfield('getTokens');
       $('#privacy_input').attr('value', JSON.stringify(tokens))
       $('#privacy_form').submit();
-
-      // var form = $('<form></form>');
-      // form.attr("method", "post");
-      // form.attr("action", '/reflections/authorise');
-      // var field = $('<input></input>');
-      // field.attr("type", "hidden");
-      // field.attr("name", "users");
-      // field.attr("value", tokens.stringify);
-      // form.append(field);
     });
   }
 }
