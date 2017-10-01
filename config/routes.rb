@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   mount Commontator::Engine => '/commontator'
-  
+
   devise_for :users
 
   resources :users, only: [:index, :show, :update]
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'demo', to: 'home#demo'
   get 'about', to: 'home#about'
+  get 'users/typeahead/:query', to: 'users#typeahead'
   get 'add_reflection', to: 'reflections#add', as: 'add_reflection'
 
   post 'reflections/new', to: 'reflections#new', as: 'new_reflection'

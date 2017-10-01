@@ -1,3 +1,11 @@
+.tt-menu {
+ @extend .tt-dropdown-menu;
+}
+
+.tt-suggestion.tt-selectable:hover {
+  @extend .tt-suggestion.tt-cursor;
+}
+
 .dropdown-toggle::after {
     display:none
 }

@@ -18,6 +18,14 @@ class UsersController < ApplicationController
     redirect_to edit_user_registration_path
   end
 
+  def typeahead
+    query = params[:query]
+    search  = User.where('first_name LIKE :query OR last_name LIKE :query OR email LIKE :query', query: "%#{query}%")
+    results = search.map { |q| {'user_details': "#{q.first_name} #{q.last_name}, #{q.email}"} }.to_json
+
+    render json: results
+  end
+
   private
 
   def user_id_params

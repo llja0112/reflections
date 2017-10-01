@@ -16,8 +16,9 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @import "bootsy";
- // @import "commontator/comments";
  @import "commontator/threads";
+ @import 'tokenfield-typeahead';
+ @import "bootstrap-tokenfield";
  @import "home/*";
  @import "devise/*";
- @import "shared/*"
+ @import "shared/*";

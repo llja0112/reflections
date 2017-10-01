@@ -66,10 +66,13 @@ GEM
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap (4.0.0.beta)
       autoprefixer-rails (>= 6.0.3)
       popper_js (~> 1.11.1)
       sass (>= 3.4.19)
+    bootstrap_tokenfield_rails (0.12.1)
     builder (3.2.3)
     byebug (9.0.6)
     carrierwave (0.11.2)
@@ -80,6 +83,7 @@ GEM
       mimemagic (>= 0.3.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    debug_inspector (0.0.2)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -210,6 +214,10 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
+    twitter-typeahead-rails (0.11.1)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -230,7 +238,9 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   bootstrap (~> 4.0.0.beta)
+  bootstrap_tokenfield_rails
   bootsy!
   byebug
   commontator!
@@ -255,6 +265,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
+  twitter-typeahead-rails
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)

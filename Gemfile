@@ -32,6 +32,8 @@ gem 'devise'
 gem 'bootsy', :git => "https://github.com/volmer/bootsy.git", :branch => "bootstrap-4"
 gem 'commontator', :git => "https://github.com/lml/commontator.git", :branch => "rails5"
 gem 'groupify'
+gem 'twitter-typeahead-rails'
+gem 'bootstrap_tokenfield_rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -47,6 +49,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'pry-rails'
 end
 

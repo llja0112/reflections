@@ -16,5 +16,8 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require shared
+//= require twitter/typeahead.min
+//= require bootstrap-tokenfield
 //= require bootsy
+//= require shared
+//= require reflections
