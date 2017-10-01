@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get 'about', to: 'home#about'
   get 'users/typeahead/:query', to: 'users#typeahead'
   get 'add_reflection', to: 'reflections#add', as: 'add_reflection'
+  get 'reflections/:id/privacy', to: 'reflections#privacy', as: 'reflection_privacy'
 
   post 'reflections/new', to: 'reflections#new', as: 'new_reflection'
+  post 'reflections/:id/authorise', to: 'reflections#authorise', as: 'authorise_personals'
   post 'reflections/:id/update_privacy', to: 'reflections#update_privacy', as: 'update_reflection_privacy'
 end

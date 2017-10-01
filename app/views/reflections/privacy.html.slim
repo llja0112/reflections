@@ -1,0 +1,23 @@
+.container
+  .card.mt-3
+    .card-body
+      .lead
+        | Privacy Settings for&nbsp;
+        span.text-primary = @reflection.title
+      p
+        - if !@reflection.authorised_personals.empty?
+          | Currently shared with
+          - @reflection.authorised_personals.each do |personal|
+            span &nbsp;
+            span.badge.badge-secondary #{personal.last_name} #{personal.first_name}
+          span .&nbsp;
+        - else
+          Strong This reflection is private to you.
+        span.text-muted Search for users to share with.
+      .form-group
+        input#share_input.form-control.tokenize type='text'
+      button#share_btn.btn.btn-primary.pull-right.btn-sm Share
+      a.btn.btn-light.pull-right.btn-sm.mr-2 href=reflection_path(@reflection) View Reflection
+form#privacy_form.hidden method="post" action=authorise_personals_path(@reflection)
+  input#privacy_input type="hidden" name="authorised_personals" value=""
+  input type="hidden" name=request_forgery_protection_token.to_s value=form_authenticity_token

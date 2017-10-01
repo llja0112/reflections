@@ -35,6 +35,22 @@ class ReflectionsController < ApplicationController
     redirect_to reflection_path(r)
   end
 
+  def privacy
+    @reflection = Reflection.find(reflection_id_params)
+  end
+
+  def authorise
+    r = Reflection.find(reflection_id_params)
+    authorised_personals = JSON.parse authorised_personals_params
+    redirect_to reflection_privacy_path(r) if authorised_personals.empty?
+    authorised_personals.each do |personal|
+      if r.user != personal['id'].to_i
+        Privacy.create(reflection_id: reflection_id_params , authorised_personal_id: personal['id'].to_i)
+      end
+    end
+    redirect_to reflection_privacy_path(r)
+  end
+
   def update_privacy
     r = Reflection.find(reflection_id_params)
     r.privacy = reflection_privacy_params
@@ -55,5 +71,9 @@ class ReflectionsController < ApplicationController
 
   def reflection_privacy_params
     params.require(:privacy)
+  end
+
+  def authorised_personals_params
+    params.require(:authorised_personals)
   end
 end

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def typeahead
     query = params[:query]
     search  = User.where('first_name LIKE :query OR last_name LIKE :query OR email LIKE :query', query: "%#{query}%")
-    results = search.map { |q| {'value': "#{q.first_name} #{q.last_name}, #{q.email}"} }.to_json
+    results = search.map { |q| {'value': "#{q.last_name} #{q.first_name}; #{q.email}", 'id': "#{q.id}"} }.to_json
 
     render json: results
   end
