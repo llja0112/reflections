@@ -6,4 +6,7 @@ class Reflection < ApplicationRecord
 
   has_many :reflection_privacies, class_name: "Privacy", foreign_key: "reflection_id"
   has_many :authorised_personals, through: :reflection_privacies, source: :authorised_personal
+
+  has_many :reflection_reviews, class_name: "Privacy", foreign_key: "reflection_id"
+  has_many :reviewers, through: :reflection_reviews, source: :reviewer
 end
