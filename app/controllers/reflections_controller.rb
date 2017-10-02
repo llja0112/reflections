@@ -37,13 +37,15 @@ class ReflectionsController < ApplicationController
 
   def privacy
     @reflection = Reflection.find(reflection_id_params)
+    @personals_json = @reflection.authorised_personals.map { |personal| {'value': "#{personal.last_name} #{personal.first_name}; #{personal.email}", 'id': "#{personal.id}"} }.to_json
   end
 
   def authorise
     r = Reflection.find(reflection_id_params)
     authorised_personals = JSON.parse authorised_personals_params
+    Privacy.where(reflection: r).delete_all
     if authorised_personals.empty?
-      flash[:notice] = 'No valid users added for sharing!'
+      flash[:notice] = 'No users added for sharing!'
       redirect_to reflection_privacy_path(r)
       return
     end

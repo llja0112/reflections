@@ -4,21 +4,18 @@
       h4.lead.text-primary = @reflection.title
       p.card-text = @reflection.story.html_safe
       p.card-text
+        strong Reflection&nbsp;
+        | was shared with&nbsp;
+        - @reflection.authorised_personals.each do |personal|
+          span.badge.badge-primary #{personal.last_name} #{personal.first_name}
+          | &nbsp;
+      p.card-text
         small.text-muted Created on #{@reflection.created_at.strftime("%-d %B %Y")} by #{@reflection.user.email}
 
       a.card-link.btn.btn-sm.btn-secondary href=url_for(:back) Back
       - if user_signed_in?
         a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(@reflection) Edit
         a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(@reflection) Privacy
-
-  - if user_signed_in? && @reflection.user == current_user
-    .card.mt-3
-      .card-body
-        .lead Reviews
-        p Add users to be reviewers.
-        .form-group
-          input#review_input.form-control.tokenize type='text'
-
 
   #comments_section.card.mt-3
     .card-body
