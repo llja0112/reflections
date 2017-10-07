@@ -40,6 +40,11 @@ class ReflectionsController < ApplicationController
     @personals_json = @reflection.authorised_personals.map { |personal| {'value': "#{personal.last_name} #{personal.first_name}; #{personal.email}", 'id': "#{personal.id}"} }.to_json
   end
 
+  def review
+    @reflection = Reflection.find(reflection_id_params)
+    @reviewers_json = @reflection.reviewers.map { |reviewer| {'value': "#{reviewer.last_name} #{reviewer.first_name}; #{reviewer.email}", 'id': "#{reviewer.id}"} }.to_json
+  end
+
   def authorise
     r = Reflection.find(reflection_id_params)
     authorised_personals = JSON.parse authorised_personals_params
@@ -56,6 +61,24 @@ class ReflectionsController < ApplicationController
     end
     flash[:notice] = 'Successfully shared reflections!'
     redirect_to reflection_privacy_path(r)
+  end
+
+  def submit_for_review
+    r = Reflection.find(reflection_id_params)
+    reviewers = JSON.parse reviewers_params
+    Review.where(reflection: r).delete_all
+    if reviewers.empty?
+      flash[:notice] = 'You have not submitted any reviewers!'
+      redirect_to reflection_review_path(r)
+      return
+    end
+    reviewers.each do |personal|
+      if r.user != personal['id'].to_i
+        Review.create(reflection_id: reflection_id_params , reviewer_id: personal['id'].to_i)
+      end
+    end
+    flash[:notice] = 'Your reflections have been sent for review!'
+    redirect_to reflection_review_path(r)
   end
 
   def update_privacy
@@ -82,5 +105,9 @@ class ReflectionsController < ApplicationController
 
   def authorised_personals_params
     params.require(:authorised_personals)
+  end
+
+  def reviewers_params
+    params.require(:reviewers)
   end
 end
