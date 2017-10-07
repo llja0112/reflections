@@ -2,42 +2,60 @@
   / .lead.text-center #{current_user.name.blank? ? current_user.email : current_user.name}'s Dashboard
   .lead.text-center.mt-2 #{current_user.email}'s Dashboard
   hr
-  - if @reflections.empty?
-    .jumbotron.text-center
-      = icon('clone', class: 'fa-4x')
-      h3 We cannot find any reflections that belong to you.
-      p.lead Click the button below to start creating a reflection.
-      a.btn.btn-primary href=add_reflection_path Create a reflection
-  - else
-    .row
-      .col-md-12
-        a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
-    - @reflections.each do |reflection|
-      .card.mb-3
-        .card-body
-          h4.lead.text-primary = reflection.title
-          p.card-text = strip_tags(reflection.story).truncate_words(100)
-          p.card-text
-            small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%-d %B %Y")}
-          a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
-          a.card-link.btn.btn-sm.btn-secondary href="#{reflection_path(reflection)}#comments_section"
-            - if reflection.thread.comments.count < 1
-              span Comments
-            - else
-              span.badge.badge-light #{reflection.thread.comments.count}
-              | &nbsp;Comments
-          - if reflection.user == current_user
-            a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(reflection) Edit
-            .card-link.btn-group.m-r-1
-              button#dropdownButton.btn.btn-sm.btn-light.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = reflection.privacy=="Private" ? icon('lock') : icon('globe')
-              .dropdown-menu aria-labelledby="dropdownButton"
-                a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Private') data-method="post"
-                  - if reflection.privacy == "Private"
-                    span.text-primary #{icon('lock')} Private
-                  - else
-                    span #{icon('lock')} Private
-                a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Public') data-method="post"
-                  - if reflection.privacy == "Public"
-                    span.text-primary #{icon('globe')} Public
-                  - else
-                    span #{icon('globe')} Public
+  .row
+    .col-md-6
+      - if @reflections.empty?
+        .jumbotron.text-center
+          = icon('clone', class: 'fa-4x')
+          h3 We cannot find any reflections that belong to you.
+          p.lead Click the button below to start creating a reflection.
+          a.btn.btn-primary href=add_reflection_path Create a reflection
+      - else
+        .row
+          .col-md-12
+            a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
+        - @reflections.each do |reflection|
+          .card.mb-3
+            .card-body
+              h4.lead.text-primary = reflection.title
+              p.card-text = strip_tags(reflection.story).truncate_words(100)
+              p.card-text
+                small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%-d %B %Y")}
+              a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
+              a.card-link.btn.btn-sm.btn-secondary href="#{reflection_path(reflection)}#comments_section"
+                - if reflection.thread.comments.count < 1
+                  span Comments
+                - else
+                  span.badge.badge-light #{reflection.thread.comments.count}
+                  | &nbsp;Comments
+              - if reflection.user == current_user
+                a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(reflection) Edit
+                .card-link.btn-group.m-r-1
+                  button#dropdownButton.btn.btn-sm.btn-light.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = reflection.privacy=="Private" ? icon('lock') : icon('globe')
+                  .dropdown-menu aria-labelledby="dropdownButton"
+                    a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Private') data-method="post"
+                      - if reflection.privacy == "Private"
+                        span.text-primary #{icon('lock')} Private
+                      - else
+                        span #{icon('lock')} Private
+                    a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Public') data-method="post"
+                      - if reflection.privacy == "Public"
+                        span.text-primary #{icon('globe')} Public
+                      - else
+                        span #{icon('globe')} Public
+    .col-md-6
+      - if !current_user.request_reflections.empty?
+        - current_user.request_reflections.each do |request_reflection|
+          .card.border-info.mb-3
+            .card-body
+              h4.lead.text-primary = request_reflection.title
+              p.card-text = strip_tags(request_reflection.story).truncate_words(100)
+              p.card-text
+                small.text-muted Written by #{request_reflection.user.email} on #{request_reflection.created_at.strftime("%-d %B %Y")}
+              a.card-link.btn.btn-sm.btn-primary href=review_path(request_reflection.reflection_reviews.first) Read More
+      - else
+        .jumbotron.text-center
+          = icon('sticky-note-o', class: 'fa-4x')
+          h3 No reflections to review at the current moment.
+          p.lead Click the button below to find out more about reviewing reflection submissions.
+          a.btn.btn-primary href='#' Find out more

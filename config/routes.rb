@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :update]
   resources :reflections, only: [:index, :show, :edit, :update]
+  resources :reviews, only: [:show, :edit, :update]
 
   root 'home#index'
   get 'demo', to: 'home#demo'

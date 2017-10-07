@@ -1,0 +1,21 @@
+.container.mb-3
+  .card.card-info.mt-3
+    .card-body
+      h4.lead
+        span.text-success You are reviewing&nbsp;
+        span.text-primary #{@review.reflection.title}&nbsp;
+        span written by&nbsp;
+        span.text-primary #{@review.reflection.user.first_name}
+      p.card-text = @review.reflection.story.html_safe
+      p.card-text
+        small.text-muted Created on #{@review.reflection.created_at.strftime("%-d %B %Y")} by #{@review.reflection.user.email}
+  .card.card-success.mt-3
+    .card-body
+      = simple_form_for @review, url: review_path(@review), method: :patch do |f|
+        .row.form-group
+          .col-md-12
+            = f.bootsy_area :content, placeholder: 'Write review here!', class: 'form-control', id: 'reflectionReview', rows: 20
+        .row.form-group
+          .col-md-12
+            = link_to 'back', user_path(current_user), class: 'btn btn-secondary'
+            = f.button :submit, 'Save review', class: 'btn btn-primary ml-1'
