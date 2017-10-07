@@ -6,7 +6,7 @@
         = f.input_field :title, placeholder: 'Reflection Title', class: 'form-control', id: 'reflectionTitle'
     .row.form-group
       .col-md-12
-        = f.bootsy_area :story, placeholder: 'Write your story here', class: 'form-control', id: 'reflectionStory', rows: 20
+        = f.text_area :story, placeholder: 'Write your story here', class: 'form-control summernote', id: 'reflectionStory', rows: 20
     .row.form-group
       .col-md-12
         = link_to 'back', user_path(current_user), class: 'btn btn-secondary'

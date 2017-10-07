@@ -14,7 +14,7 @@
       = simple_form_for @review, url: review_path(@review), method: :patch do |f|
         .row.form-group
           .col-md-12
-            = f.bootsy_area :content, placeholder: 'Write review here!', class: 'form-control', id: 'reflectionReview', rows: 20
+            = f.text_area :content, placeholder: 'Write review here!', class: 'form-control summernote', id: 'reflectionReview', rows: 20
         .row.form-group
           .col-md-12
             = link_to 'back', user_path(current_user), class: 'btn btn-secondary'

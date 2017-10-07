@@ -18,6 +18,6 @@
 //= require turbolinks
 //= require twitter/typeahead.min
 //= require bootstrap-tokenfield
-//= require bootsy
+//= require summernote/summernote-bs4
 //= require shared
 //= require reflections
