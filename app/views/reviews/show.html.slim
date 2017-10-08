@@ -17,5 +17,5 @@
             = f.text_area :content, placeholder: 'Write review here!', class: 'form-control summernote', id: 'reflectionReview', rows: 20
         .row.form-group
           .col-md-12
-            = link_to 'back', user_path(current_user), class: 'btn btn-secondary'
-            = f.button :submit, 'Save review', class: 'btn btn-primary ml-1'
+            = f.button :submit, 'Save review', class: 'btn btn-light mr-1'
+            = link_to 'back', user_path(current_user), class: 'btn btn-light'

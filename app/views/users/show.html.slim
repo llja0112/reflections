@@ -52,7 +52,7 @@
               p.card-text = strip_tags(request_reflection.story).truncate_words(100)
               p.card-text
                 small.text-muted Written by #{request_reflection.user.email} on #{request_reflection.created_at.strftime("%-d %B %Y")}
-              a.card-link.btn.btn-sm.btn-primary href=review_path(request_reflection.reflection_reviews.first) Read More
+              a.card-link.btn.btn-sm.btn-primary href=review_path(request_reflection.reflection_reviews.first) Review
       - else
         .jumbotron.text-center
           = icon('sticky-note-o', class: 'fa-4x')
