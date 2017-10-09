@@ -28,6 +28,17 @@
         a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(@reflection) Privacy
         a.card-link.btn.btn-sm.btn-light href=reflection_review_path(@reflection) Submissions
 
+  - if !@reflection_reviews.empty?
+    #reviews_section
+      - @reflection_reviews.each do |review|
+        .card.mt-3
+          .card-body
+            span.badge.badge-primary Completed Review
+            p.card-text = review.content.html_safe
+            p.card-text
+              small.text-muted Created on #{review.created_at.strftime("%-d %B %Y")} by #{review.reviewer.name}
+
+
   #comments_section.card.mt-3
     .card-body
       = commontator_thread(@reflection)

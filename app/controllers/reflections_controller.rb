@@ -27,6 +27,7 @@ class ReflectionsController < ApplicationController
 
   def show
     @reflection = Reflection.find(reflection_id_params)
+    @reflection_reviews = Review.where(reflection_id: @reflection.id, status: 1)
     commontator_thread_show(@reflection)
   end
 

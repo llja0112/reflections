@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable and :omniauthable
 
   acts_as_commontator
+
+  validates :name, :presence => true, :uniqueness => true
+
   has_many :reflections
 
   has_many :reflection_privacies, class_name: "Privacy", foreign_key: "authorised_personal_id"

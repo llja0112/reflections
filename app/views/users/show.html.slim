@@ -18,13 +18,35 @@
             = render "layouts/reflections/reflection_card", reflection: reflection
 
     .col-md-6
-      - if !current_user.request_reflections.empty?
-        - current_user.request_reflections.each do |request_reflection|
+      - if !@request_reflections.empty?
+        .alert.alert-warning.mt-3 role="alert"
+          span You have #{@request_reflections.count} reflections awaiting review! Click&nbsp;
+          button.btn.btn-warning.btn-sm href=reviews_path Review
+          span &nbsp;to begin!
+
+      - if !@review_requests.empty?
+        - @review_requests.each do |review_request|
           .mb-3
-            = render "layouts/reflections/reflection_card", reflection: request_reflection
+            .card.border-warning
+              .card-body
+                - if review_request.status == "Incomplete"
+                  span.badge.badge-warning Pending Review
+                  .lead.my-2
+                    span You have requested&nbsp;
+                    strong = review_request.reviewer.name
+                    span &nbsp;to review:&nbsp;
+                    span.text-primary = review_request.reflection.title
+                  a.btn.btn-warning.btn-sm href=reflection_review_path(review_request.reflection) View Review Settings
+                - else
+                  span.badge.badge-primary Completed Review
+                  .lead.my-2
+                    strong = review_request.reviewer.name
+                    span &nbsp;has completed the review for:&nbsp;
+                    span.text-primary = review_request.reflection.title
+                  p.card-text = strip_tags(review_request.content).truncate_words(100)
+                  a.btn.btn-sm.btn-primary href="#{reflection_path(review_request.reflection)}#reviews_section" View Review
       - else
         .jumbotron.text-center
           = icon('sticky-note-o', class: 'fa-4x')
-          h3 No reflections to review at the current moment.
-          p.lead Click the button below to find out more about reviewing reflection submissions.
-          a.btn.btn-primary href='#' Find out more
+          h3 No reflection reviews at the moment.
+          p.lead Add reviewers to reflections to see pending reviews.

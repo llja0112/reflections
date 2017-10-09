@@ -2,6 +2,11 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   include ReviewsHelper
 
+  def index
+    @complete_reviews = Review.where(reviewer: current_user, status: 'Complete')
+    @incomplete_reviews = Review.where(reviewer: current_user, status: 'Incomplete')
+  end
+
   def show
     @review = Review.find(review_id_params)
     if @review.content.blank?
