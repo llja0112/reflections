@@ -1,8 +1,12 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
+  include ReviewsHelper
 
   def show
     @review = Review.find(review_id_params)
+    if @review.content.blank?
+      @review.content = review_html('default')
+    end
   end
 
   def edit

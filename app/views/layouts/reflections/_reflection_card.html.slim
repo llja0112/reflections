@@ -14,7 +14,7 @@
         | &nbsp;Comments
     - if user_signed_in? && reflection.user == current_user
       button.btn.btn-sm.btn-light.dropdown-toggle type="button" id="cardOptionsDrowndown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #{icon('cog')} Settings
-      .dropdown-menu.dropdown-menu-right aria-labelledby="cardOptionsDropdown"
+      .dropdown-menu.dropdown-menu aria-labelledby="cardOptionsDropdown"
         a.dropdown-item.small href=edit_reflection_path(reflection) Edit reflection
         a.dropdown-item.small href=reflection_privacy_path(reflection) Privacy
         a.dropdown-item.small href=reflection_review_path(reflection) Submissions
