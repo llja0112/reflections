@@ -1,6 +1,5 @@
 .container.mb-2
-  / .lead.text-center #{current_user.name.blank? ? current_user.email : current_user.name}'s Dashboard
-  .lead.text-center.mt-2 #{current_user.email}'s Dashboard
+  .lead.text-center.mt-2 #{current_user.name}'s Dashboard
   hr
   .row
     .col-md-6
@@ -15,33 +14,14 @@
           .col-md-12
             a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
         - @reflections.each do |reflection|
-          .card.mb-3
-            .card-body
-              h4.lead.text-primary = reflection.title
-              p.card-text = strip_tags(reflection.story).truncate_words(100)
-              p.card-text
-                small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%-d %B %Y")}
-              a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
-              a.card-link.btn.btn-sm.btn-light href="#{reflection_path(reflection)}#comments_section"
-                - if reflection.thread.comments.count < 1
-                  span Comments
-                - else
-                  span.badge.badge-secondary #{reflection.thread.comments.count}
-                  | &nbsp;Comments
-              - if reflection.user == current_user
-                a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(reflection) Edit
-                a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(reflection) Privacy
+          .mb-3
+            = render "layouts/reflections/reflection_card", reflection: reflection
 
     .col-md-6
       - if !current_user.request_reflections.empty?
         - current_user.request_reflections.each do |request_reflection|
-          .card.border-info.mb-3
-            .card-body
-              h4.lead.text-primary = request_reflection.title
-              p.card-text = strip_tags(request_reflection.story).truncate_words(100)
-              p.card-text
-                small.text-muted Written by #{request_reflection.user.email} on #{request_reflection.created_at.strftime("%-d %B %Y")}
-              a.card-link.btn.btn-sm.btn-primary href=review_path(request_reflection.reflection_reviews.first) Review
+          .mb-3
+            = render "layouts/reflections/reflection_card", reflection: request_reflection
       - else
         .jumbotron.text-center
           = icon('sticky-note-o', class: 'fa-4x')

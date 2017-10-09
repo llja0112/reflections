@@ -8,16 +8,4 @@
   - else
     .card-columns.mt-3
       - @reflections.each do |reflection|
-        .card class="#{reflection_card_class(reflection)}"
-          .card-body
-            h4.lead.text-primary = reflection.title
-            p.card-text = strip_tags(reflection.story).truncate_words(100)
-            p.card-text
-              small.text-muted Written by #{reflection.user.name} on #{reflection.created_at.strftime("%-d %B %Y")}
-            a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
-            a.card-link.btn.btn-sm.btn-light href="#{reflection_path(reflection)}#comments_section"
-              - if reflection.thread.comments.count < 1
-                span Comments
-              - else
-                span.badge.badge-secondary #{reflection.thread.comments.count}
-                | &nbsp;Comments
+        = render "layouts/reflections/reflection_card", reflection: reflection

@@ -5,10 +5,10 @@
         span.text-success You are reviewing&nbsp;
         span.text-primary #{@review.reflection.title}&nbsp;
         span written by&nbsp;
-        span.text-primary #{@review.reflection.user.first_name}
+        span.text-primary #{@review.reflection.user.name}
       p.card-text = @review.reflection.story.html_safe
       p.card-text
-        small.text-muted Created on #{@review.reflection.created_at.strftime("%-d %B %Y")} by #{@review.reflection.user.email}
+        small.text-muted Created on #{@review.reflection.created_at.strftime("%-d %B %Y")} by #{@review.reflection.user.name}
   .card.card-success.mt-3
     .card-body
       = simple_form_for @review, url: review_path(@review), method: :patch do |f|

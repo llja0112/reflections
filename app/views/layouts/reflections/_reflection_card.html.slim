@@ -1,0 +1,22 @@
+.card class="border-#{reflection_card_class(reflection)}"
+  .card-body
+    .badge class="badge-#{reflection_card_class(reflection)}" = reflection_card_description(reflection)
+    h4.lead.text-primary.mt-2 = reflection.title
+    p.card-text = strip_tags(reflection.story).truncate_words(100)
+    p.card-text
+      small.text-muted Written by #{reflection.user.name} on #{reflection.created_at.strftime("%-d %B %Y")}
+    a.btn.btn-sm.btn-primary.mr-2 href=reflection_path(reflection) Read More
+    a.btn.btn-sm.btn-light.mr-2 href="#{reflection_path(reflection)}#comments_section"
+      - if reflection.thread.comments.count < 1
+        span Comments
+      - else
+        span.badge.badge-secondary #{reflection.thread.comments.count}
+        | &nbsp;Comments
+    - if user_signed_in? && reflection.user == current_user
+      button.btn.btn-sm.btn-light.dropdown-toggle type="button" id="cardOptionsDrowndown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #{icon('cog')} Settings
+      .dropdown-menu.dropdown-menu-right aria-labelledby="cardOptionsDropdown"
+        a.dropdown-item.small href=edit_reflection_path(reflection) Edit reflection
+        a.dropdown-item.small href=reflection_privacy_path(reflection) Privacy
+        a.dropdown-item.small href=reflection_review_path(reflection) Submissions
+    - if user_signed_in? && reflection.reviewers.include?(current_user)
+      a.card-link.btn.btn-sm.btn-warning href=review_path(Review.where(reflection: reflection, reviewer: current_user).first) Review
