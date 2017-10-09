@@ -21,3 +21,4 @@
 //= require summernote/summernote-bs4
 //= require shared
 //= require reflections
+//= require reviews

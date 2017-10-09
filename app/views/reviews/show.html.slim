@@ -11,11 +11,18 @@
         small.text-muted Created on #{@review.reflection.created_at.strftime("%-d %B %Y")} by #{@review.reflection.user.name}
   .card.card-success.mt-3
     .card-body
-      = simple_form_for @review, url: review_path(@review), method: :patch do |f|
+      h4.lead Write review here.
+      = simple_form_for @review, url: review_path(@review), method: :patch, html: {id: :review_form} do |f|
         .row.form-group
           .col-md-12
             = f.text_area :content, placeholder: 'Write review here!', class: 'form-control summernote', id: 'reflectionReview', rows: 20
+            = f.hidden_field :status, id: 'review_status'
         .row.form-group
           .col-md-12
-            = f.button :submit, 'Save review', class: 'btn btn-light mr-1'
+            button#review_button.btn.btn-warning.mr-1
+              - if @review.status == "Incomplete"
+                span Publish Review
+              - else
+                span Unpublish Review
+            = f.button :submit, 'Save Review', class: 'btn btn-light mr-1'
             = link_to 'back', user_path(current_user), class: 'btn btn-light'

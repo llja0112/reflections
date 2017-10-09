@@ -11,7 +11,8 @@ class ReviewsController < ApplicationController
 
   def update
     review = Review.find(review_id_params)
-    review.content = review_content_params
+    review.content = review_content_params['content']
+    review.status = review_content_params['status']
     review.save
 
     redirect_to :back
@@ -25,6 +26,6 @@ class ReviewsController < ApplicationController
 
   def review_content_params
     params.require(:review).permit(
-      :content)['content']
+      :content, :status)
   end
 end
