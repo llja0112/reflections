@@ -22,27 +22,16 @@
               p.card-text
                 small.text-muted Written by #{reflection.user.email} on #{reflection.created_at.strftime("%-d %B %Y")}
               a.card-link.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
-              a.card-link.btn.btn-sm.btn-secondary href="#{reflection_path(reflection)}#comments_section"
+              a.card-link.btn.btn-sm.btn-light href="#{reflection_path(reflection)}#comments_section"
                 - if reflection.thread.comments.count < 1
                   span Comments
                 - else
-                  span.badge.badge-light #{reflection.thread.comments.count}
+                  span.badge.badge-secondary #{reflection.thread.comments.count}
                   | &nbsp;Comments
               - if reflection.user == current_user
                 a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(reflection) Edit
-                .card-link.btn-group.m-r-1
-                  button#dropdownButton.btn.btn-sm.btn-light.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = reflection.privacy=="Private" ? icon('lock') : icon('globe')
-                  .dropdown-menu aria-labelledby="dropdownButton"
-                    a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Private') data-method="post"
-                      - if reflection.privacy == "Private"
-                        span.text-primary #{icon('lock')} Private
-                      - else
-                        span #{icon('lock')} Private
-                    a.dropdown-item href=update_reflection_privacy_path(reflection, privacy: 'Public') data-method="post"
-                      - if reflection.privacy == "Public"
-                        span.text-primary #{icon('globe')} Public
-                      - else
-                        span #{icon('globe')} Public
+                a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(reflection) Privacy
+
     .col-md-6
       - if !current_user.request_reflections.empty?
         - current_user.request_reflections.each do |request_reflection|

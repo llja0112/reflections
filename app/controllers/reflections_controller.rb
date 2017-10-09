@@ -3,6 +3,13 @@ class ReflectionsController < ApplicationController
 
   def index
     @reflections = Reflection.where(privacy: 1)
+    if user_signed_in?
+      @reflections += current_user.request_reflections
+      @reflections += current_user.visible_reflections
+      @reflections += current_user.reflections
+    end
+    @reflections = @reflections.uniq
+    # @reflections = @reflections.sort_by &updated_at
   end
 
   def add
