@@ -10,14 +10,9 @@
       = devise_error_messages!
 
       .field.mb-1
-        = f.label :first_name
+        = f.label :name
         br
-        = f.text_field :first_name, autofocus: true, class: 'form-control'
-
-      .field.mb-1
-        = f.label :last_name
-        br
-        = f.text_field :last_name, autofocus: true, class: 'form-control'
+        = f.text_field :name, autofocus: true, class: 'form-control'
 
       .field.mb-1
         = f.label :email

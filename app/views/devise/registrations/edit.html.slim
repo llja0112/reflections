@@ -6,11 +6,8 @@
         hr
         = simple_form_for current_user, url: user_path(current_user), method: :patch do |f|
           .field.mb-1
-            label.form-control-label [for='firstName'] First Name
-            = f.input_field :first_name, placeholder: 'First Name', class: 'form-control', id: 'firstName'
-          .field.mb-2
-            label.form-control-label [for='lastName'] Last Name
-            = f.input_field :last_name, placeholder: 'Last Name', class: 'form-control', id: 'lastName'
+            label.form-control-label [for='name'] Name
+            = f.input_field :name, placeholder: 'Name', class: 'form-control', id: 'name'
           .field
             = f.button :submit, class: 'btn btn-primary'
 

@@ -11,8 +11,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(user_id_params)
-    user.first_name = user_name_params[:first_name]
-    user.last_name = user_name_params[:last_name]
+    user.name = user_name_params[:name]
     user.save
     flash[:notice] = 'User name successfully updated!'
     redirect_to edit_user_registration_path
@@ -20,8 +19,8 @@ class UsersController < ApplicationController
 
   def typeahead
     query = params[:query]
-    search  = User.where('first_name LIKE :query OR last_name LIKE :query OR email LIKE :query', query: "%#{query}%")
-    results = search.map { |q| {'value': "#{q.last_name} #{q.first_name}; #{q.email}", 'id': "#{q.id}"} }.to_json
+    search  = User.where('name LIKE :query OR email LIKE :query', query: "%#{query}%")
+    results = search.map { |q| {'value': "#{q.name}; #{q.email}", 'id': "#{q.id}"} }.to_json
 
     render json: results
   end
@@ -34,7 +33,6 @@ class UsersController < ApplicationController
 
   def user_name_params
     params.require(:user).permit(
-      :first_name,
-      :last_name)
+      :name)
   end
 end

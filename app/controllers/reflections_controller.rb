@@ -44,12 +44,12 @@ class ReflectionsController < ApplicationController
 
   def privacy
     @reflection = Reflection.find(reflection_id_params)
-    @personals_json = @reflection.authorised_personals.map { |personal| {'value': "#{personal.last_name} #{personal.first_name}; #{personal.email}", 'id': "#{personal.id}"} }.to_json
+    @personals_json = @reflection.authorised_personals.map { |personal| {'value': "#{personal.name}; #{personal.email}", 'id': "#{personal.id}"} }.to_json
   end
 
   def review
     @reflection = Reflection.find(reflection_id_params)
-    @reviewers_json = @reflection.reviewers.map { |reviewer| {'value': "#{reviewer.last_name} #{reviewer.first_name}; #{reviewer.email}", 'id': "#{reviewer.id}"} }.to_json
+    @reviewers_json = @reflection.reviewers.map { |reviewer| {'value': "#{reviewer.name}; #{reviewer.email}", 'id': "#{reviewer.id}"} }.to_json
   end
 
   def authorise

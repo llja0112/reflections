@@ -13,14 +13,14 @@
         - else
           | which is currently shared with&nbsp;
           - @reflection.authorised_personals.each do |personal|
-            span.badge.badge-primary #{personal.last_name} #{personal.first_name}
+            span.badge.badge-primary #{personal.name}
             | &nbsp;
       - else
         | This is a&nbsp;
         strong #{icon('globe')} #{@reflection.privacy}&nbsp;
         | reflection which is publicly available for anyone to read.
       p.card-text
-        small.text-muted Created on #{@reflection.created_at.strftime("%-d %B %Y")} by #{@reflection.user.email}
+        small.text-muted Created on #{@reflection.created_at.strftime("%-d %B %Y")} by #{@reflection.user.name}
 
       a.card-link.btn.btn-sm.btn-secondary href=reflections_path Back to Reflections list
       - if user_signed_in?
