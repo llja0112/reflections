@@ -9,7 +9,7 @@ class ReflectionsController < ApplicationController
       @reflections += current_user.reflections
     end
     @reflections = @reflections.uniq
-    # @reflections = @reflections.sort_by &updated_at
+    @reflections = @reflections.sort_by &:updated_at
   end
 
   def add

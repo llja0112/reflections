@@ -4,15 +4,25 @@
       h4.lead.text-primary = @reflection.title
       p.card-text = @reflection.story.html_safe
       p.card-text
-        strong Reflection&nbsp;
-        | was shared with&nbsp;
-        - @reflection.authorised_personals.each do |personal|
-          span.badge.badge-primary #{personal.last_name} #{personal.first_name}
-          | &nbsp;
+      - if @reflection.privacy == "Private"
+        | This is a&nbsp;
+        strong #{icon('lock')} #{@reflection.privacy}&nbsp;
+        | reflection&nbsp;
+        - if @reflection.authorised_personals.empty?
+          | which is currently not shared with anyone.
+        - else
+          | which is currently shared with&nbsp;
+          - @reflection.authorised_personals.each do |personal|
+            span.badge.badge-primary #{personal.last_name} #{personal.first_name}
+            | &nbsp;
+      - else
+        | This is a&nbsp;
+        strong #{icon('globe')} #{@reflection.privacy}&nbsp;
+        | reflection which is publicly available for anyone to read.
       p.card-text
         small.text-muted Created on #{@reflection.created_at.strftime("%-d %B %Y")} by #{@reflection.user.email}
 
-      a.card-link.btn.btn-sm.btn-secondary href=reflections_path Back
+      a.card-link.btn.btn-sm.btn-secondary href=reflections_path Back to Reflections list
       - if user_signed_in?
         a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(@reflection) Edit
         a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(@reflection) Privacy
