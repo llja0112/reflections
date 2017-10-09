@@ -12,7 +12,7 @@
       p.card-text
         small.text-muted Created on #{@reflection.created_at.strftime("%-d %B %Y")} by #{@reflection.user.email}
 
-      a.card-link.btn.btn-sm.btn-secondary href=url_for(:back) Back
+      a.card-link.btn.btn-sm.btn-secondary href=reflections_path Back
       - if user_signed_in?
         a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(@reflection) Edit
         a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(@reflection) Privacy

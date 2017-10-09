@@ -88,7 +88,7 @@ Reflections.reflections.review = {
         source: names.ttAdapter()
       }]
     })
-    .tokenfield('setTokens', JSON.parse( $('#review_input').attr('data-reviewers') ));
+    .tokenfield('setTokens', JSON.parse( $('#review_input').attr('data-reviewers') ) );
 
     $('#review_btn').click(function(){
       var tokens = $('#review_input').tokenfield('getTokens');

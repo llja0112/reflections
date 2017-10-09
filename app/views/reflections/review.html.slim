@@ -6,7 +6,7 @@
         span.text-primary = @reflection.title
       p Add users as reviewers and submit to them for critique.
       .form-group
-        input#review_input.form-control.tokenize type='text' data-personals="#{@reviewers_json}"
+        input#review_input.form-control.tokenize type='text' data-reviewers="#{@reviewers_json}"
       button#review_btn.btn.btn-primary.pull-right.btn-sm Submit for review
       a.btn.btn-light.pull-right.btn-sm.mr-2 href=reflection_path(@reflection) View Reflection
 

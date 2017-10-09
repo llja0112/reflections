@@ -73,13 +73,17 @@ class ReflectionsController < ApplicationController
   def submit_for_review
     r = Reflection.find(reflection_id_params)
     reviewers = JSON.parse reviewers_params
-    Review.where(reflection: r).delete_all
+    reviewers_ids = reviewers.map { |personal| personal['id'].to_i }
+    reviewers_remove = r.reviewers.reject { |reviewer| reviewers_ids.include?(reviewer.id) }
+    reviewers_remove.each{ |personal| Review.where(reflection: r, reviewer: personal).delete_all } unless reviewers_remove.empty?
     if reviewers.empty?
       flash[:notice] = 'You have not submitted any reviewers!'
       redirect_to reflection_review_path(r)
       return
     end
-    reviewers.each do |personal|
+    current_reviewers_ids = r.reviewers.map { |personal| personal.id }
+    reviewers_create = reviewers.reject{ |personal| current_reviewers_ids.include?(personal['id'].to_i) }
+    reviewers_create.each do |personal|
       if r.user != personal['id'].to_i
         Review.create(reflection_id: reflection_id_params , reviewer_id: personal['id'].to_i)
       end
