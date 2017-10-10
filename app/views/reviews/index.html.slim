@@ -1,1 +1,24 @@
-h1 Reviews index
+.container.my-2
+  .lead.text-center Reflection Reviews dashboard
+  hr
+  .row
+    .col-md-6
+      - if @complete_reviews.empty?
+        .jumbotron.text-center
+          = icon('square-o', class: 'fa-4x')
+          h3 You do not have any new incomplete reviews at the moment.
+          p.lead Ask your peers and mentees to send reflections to you for review.
+      - else
+        - @complete_reviews.each do |review|
+          .mb-3
+            = render "layouts/reflections/reflection_card", reflection: review.reflection
+    .col-md-6
+      - if @incomplete_reviews.empty?
+        .jumbotron.text-center
+          = icon('check-square-o', class: 'fa-4x')
+          h3 You do not have any completed reviews at the moment.
+          p.lead Submitted reviews will be seen in this column.
+      - else
+        - @incomplete_reviews.each do |review|
+          .mb-3
+            = render "layouts/reflections/reflection_card", reflection: review.reflection

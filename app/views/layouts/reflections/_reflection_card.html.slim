@@ -1,6 +1,7 @@
+- review = Review.where(reflection: reflection, reviewer: current_user).first if user_signed_in? && reflection.reviewers.include?(current_user)
 .card class="border-#{reflection_card_class(reflection)}"
   .card-body
-    .badge class="badge-#{reflection_card_class(reflection)}" = reflection_card_description(reflection)
+    span.badge.mr-1 class="badge-#{reflection_card_class(reflection)}" = reflection_card_description(reflection)
     h4.lead.text-primary.mt-2 = reflection.title
     p.card-text = strip_tags(reflection.story).truncate_words(100)
     p.card-text
@@ -19,4 +20,4 @@
         a.dropdown-item.small href=reflection_privacy_path(reflection) Privacy
         a.dropdown-item.small href=reflection_review_path(reflection) Submissions
     - if user_signed_in? && reflection.reviewers.include?(current_user)
-      a.card-link.btn.btn-sm.btn-warning href=review_path(Review.where(reflection: reflection, reviewer: current_user).first) Review
+      a.card-link.btn.btn-sm.btn-warning href=review_path(review) Review

@@ -19,9 +19,9 @@
 
     .col-md-6
       - if !@request_reflections.empty?
-        .alert.alert-warning.mt-3 role="alert"
+        .alert.alert-warning role="alert"
           span You have #{@request_reflections.count} reflections awaiting review! Click&nbsp;
-          button.btn.btn-warning.btn-sm href=reviews_path Review
+          a.btn.btn-warning.btn-sm href=reviews_path Review
           span &nbsp;to begin!
 
       - if !@review_requests.empty?
@@ -47,6 +47,6 @@
                   a.btn.btn-sm.btn-primary href="#{reflection_path(review_request.reflection)}#reviews_section" View Review
       - else
         .jumbotron.text-center
-          = icon('sticky-note-o', class: 'fa-4x')
-          h3 No reflection reviews at the moment.
-          p.lead Add reviewers to reflections to see pending reviews.
+          = icon('paper-plane', class: 'fa-4x')
+          h3 No reflection review submissions found.
+          p.lead Submit reflections to peers and mentors for review to populate this section.
