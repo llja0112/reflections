@@ -15,7 +15,7 @@
             a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
         - @reflections.each do |reflection|
           .mb-3
-            = render "layouts/reflections/reflection_card", reflection: reflection
+            = render partial: "layouts/reflections/reflection_card", locals: { reflection: reflection, review: nil }
 
     .col-md-6
       - if !@request_reflections.empty?

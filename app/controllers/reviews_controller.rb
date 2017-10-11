@@ -3,8 +3,8 @@ class ReviewsController < ApplicationController
   include ReviewsHelper
 
   def index
-    @complete_reviews = Review.where(reviewer: current_user, status: 'Complete')
-    @incomplete_reviews = Review.where(reviewer: current_user, status: 'Incomplete')
+    @complete_reviews = Review.includes(:reflection).where(reviewer: current_user, status: 'Complete')
+    @incomplete_reviews = Review.includes(:reflection).where(reviewer: current_user, status: 'Incomplete')
   end
 
   def show

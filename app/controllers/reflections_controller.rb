@@ -4,9 +4,14 @@ class ReflectionsController < ApplicationController
   def index
     @reflections = Reflection.where(privacy: 1)
     if user_signed_in?
-      @reflections += current_user.request_reflections
-      @reflections += current_user.visible_reflections
+      # @reflections += current_user.request_reflections
       @reflections += current_user.reflections
+      @reflections += current_user.visible_reflections
+      review_reflections = Reflection.includes(:reflection_reviews)
+        .joins(:reflection_reviews)
+        .where('reviews.reviewer_id = ?', current_user.id)
+      @reflections += review_reflections
+      @review_reflection_ids = review_reflections.map {|r| r.id}
     end
     @reflections = @reflections.uniq
     @reflections = @reflections.sort_by &:updated_at

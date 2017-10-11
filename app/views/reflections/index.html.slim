@@ -8,4 +8,4 @@
   - else
     .card-columns.mt-3
       - @reflections.each do |reflection|
-        = render "layouts/reflections/reflection_card", reflection: reflection
+        = render partial: "layouts/reflections/reflection_card", locals: {reflection: reflection, review: !@review_reflection_ids.nil? && @review_reflection_ids.include?(reflection.id) ? reflection.reflection_reviews.first :  nil }

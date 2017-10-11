@@ -11,7 +11,7 @@
       - else
         - @complete_reviews.each do |review|
           .mb-3
-            = render "layouts/reflections/reflection_card", reflection: review.reflection
+            = render partial: "layouts/reflections/reflection_card", locals: {reflection: review.reflection, review: review}
     .col-md-6
       - if @incomplete_reviews.empty?
         .jumbotron.text-center
@@ -21,4 +21,4 @@
       - else
         - @incomplete_reviews.each do |review|
           .mb-3
-            = render "layouts/reflections/reflection_card", reflection: review.reflection
+            = render partial: "layouts/reflections/reflection_card", locals: {reflection: review.reflection, review: review}

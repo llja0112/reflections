@@ -1,10 +1,10 @@
 module ReflectionsHelper
-  def reflection_card_class(reflection)
+  def reflection_card_class(reflection, review)
     if user_signed_in?
-      if reflection.user == current_user
-        class_string = 'primary'
-      elsif reflection.reviewers.include?(current_user)
+      if !review.nil?
         class_string = 'warning'
+      elsif reflection.user == current_user
+        class_string = 'primary'
       else
         class_string = 'info'
       end
@@ -17,8 +17,6 @@ module ReflectionsHelper
   def reflection_card_description(reflection)
     if reflection.user == current_user
       description_string = 'Personal reflection'
-    elsif reflection.reviewers.include?(current_user)
-      description_string = 'For your review'
     elsif reflection.privacy == 'Private'
       description_string = 'Shared with you'
     else
