@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'add_reflection', to: 'reflections#add', as: 'add_reflection'
   get 'reflections/:id/privacy', to: 'reflections#privacy', as: 'reflection_privacy'
   get 'reflections/:id/review', to: 'reflections#review', as: 'reflection_review'
+  get 'reflections/:id/settings', to: 'reflections#settings', as: 'reflection_settings'
 
   post 'reflections/new', to: 'reflections#new', as: 'new_reflection'
   post 'reflections/:id/authorise', to: 'reflections#authorise', as: 'authorise_personals'

@@ -1,0 +1,55 @@
+.container
+  #privacy_section.card.mt-3
+    .card-body
+      .lead
+        | Privacy Settings for&nbsp;
+        span.text-primary = @reflection.title
+      p
+        | This is currently a&nbsp;
+        span.text-muted = @reflection.privacy
+        | &nbsp;post.&nbsp;
+        - if @reflection.privacy == 'Private'
+          span Search for users to share reflections with.
+        - else
+          span Everyone can see this reflection as of now. Change privacy settings to share with specific users only.
+      *privacy_share_form(@reflection.privacy)
+        input#share_input.form-control.tokenize type='text' data-personals="#{@personals_json}"
+
+      - if @reflection.privacy == 'Private'
+        button#share_btn.btn.btn-primary.pull-right.btn-sm.ml-2 #{icon('share')} Share
+      .btn-group.pull-right
+        button#dropdownButton.btn.btn-sm.btn-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" = @reflection.privacy=="Private" ? icon('lock')+" Private" : icon('globe')+" Public"
+        .dropdown-menu aria-labelledby="dropdownButton"
+          a.dropdown-item href=update_reflection_privacy_path(@reflection, privacy: 'Private') data-method="post"
+            - if @reflection.privacy == "Private"
+              span.text-primary #{icon('lock')} Private
+            - else
+              span #{icon('lock')} Private
+          a.dropdown-item href=update_reflection_privacy_path(@reflection, privacy: 'Public') data-method="post"
+            - if @reflection.privacy == "Public"
+              span.text-primary #{icon('globe')} Public
+            - else
+              span #{icon('globe')} Public
+
+  #review_section.card.mt-3
+    .card-body
+      .lead
+        | Review Settings for&nbsp;
+        span.text-primary = @reflection.title
+      p Add users as reviewers and submit to them for critique.
+      .form-group
+        input#review_input.form-control.tokenize type='text' data-reviewers="#{@reviewers_json}"
+      button#review_btn.btn.btn-primary.pull-right.btn-sm #{icon('paper-plane')} Submit for review
+
+  .card.mt-3
+    .card-body.text-center
+      .lead.mb-2 I am done with my reflection settings.
+      a.btn.btn-lg.btn-primary href=reflection_path(@reflection) Bring me back to see my reflection!
+
+form#privacy_form.hidden method="post" action=authorise_personals_path(@reflection)
+  input#privacy_input type="hidden" name="authorised_personals" value=""
+  input type="hidden" name=request_forgery_protection_token.to_s value=form_authenticity_token
+
+form#review_form.hidden method="post" action=submit_for_review_path(@reflection)
+  input#reviewers_input type="hidden" name="reviewers" value=""
+  input type="hidden" name=request_forgery_protection_token.to_s value=form_authenticity_token

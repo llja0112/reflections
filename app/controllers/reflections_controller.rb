@@ -27,7 +27,7 @@ class ReflectionsController < ApplicationController
       story: reflection_params[:story],
       user: current_user)
     flash[:notice] = 'Reflection successfully created!'
-    redirect_to user_path(current_user)
+    redirect_to reflection_settings_path(reflection)
   end
 
   def show
@@ -58,13 +58,19 @@ class ReflectionsController < ApplicationController
     @reviewers_json = @reflection.reviewers.map { |reviewer| {'value': "#{reviewer.name}; #{reviewer.email}", 'id': "#{reviewer.id}"} }.to_json
   end
 
+  def settings
+    @reflection = Reflection.find(reflection_id_params)
+    @personals_json = @reflection.authorised_personals.map { |personal| {'value': "#{personal.name}; #{personal.email}", 'id': "#{personal.id}"} }.to_json
+    @reviewers_json = @reflection.reviewers.map { |reviewer| {'value': "#{reviewer.name}; #{reviewer.email}", 'id': "#{reviewer.id}"} }.to_json
+  end
+
   def authorise
     r = Reflection.find(reflection_id_params)
     authorised_personals = JSON.parse authorised_personals_params
     Privacy.where(reflection: r).delete_all
     if authorised_personals.empty?
       flash[:notice] = 'No users added for sharing!'
-      redirect_to reflection_privacy_path(r)
+      redirect_to :back
       return
     end
     authorised_personals.each do |personal|
@@ -73,7 +79,7 @@ class ReflectionsController < ApplicationController
       end
     end
     flash[:notice] = 'Successfully shared reflections!'
-    redirect_to reflection_privacy_path(r)
+    redirect_to :back
   end
 
   def submit_for_review
@@ -84,7 +90,7 @@ class ReflectionsController < ApplicationController
     reviewers_remove.each{ |personal| Review.where(reflection: r, reviewer: personal).delete_all } unless reviewers_remove.empty?
     if reviewers.empty?
       flash[:notice] = 'You have not submitted any reviewers!'
-      redirect_to reflection_review_path(r)
+      redirect_to :back
       return
     end
     current_reviewers_ids = r.reviewers.map { |personal| personal.id }
@@ -95,7 +101,7 @@ class ReflectionsController < ApplicationController
       end
     end
     flash[:notice] = 'Your reflections have been sent for review!'
-    redirect_to reflection_review_path(r)
+    redirect_to :back
   end
 
   def update_privacy

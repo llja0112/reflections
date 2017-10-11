@@ -9,5 +9,5 @@
         = f.text_area :story, placeholder: 'Write your story here', class: 'form-control summernote', id: 'reflectionStory', rows: 20
     .row.form-group
       .col-md-12
-        = link_to 'back', user_path(current_user), class: 'btn btn-secondary'
-        = f.button :submit, 'Create New Reflection', class: 'btn btn-primary ml-1'
+        = f.button :submit, 'Create', class: 'btn btn-primary mr-1'
+        = link_to 'back', user_path(current_user), class: 'btn btn-ligh'
