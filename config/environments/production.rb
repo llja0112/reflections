@@ -84,13 +84,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'http://medbot.me' }
+  config.action_mailer.default_url_options = { host: 'https://powerful-island-42597.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 587,
-    :domain => "http://medbot.me",
+    :domain => "https://powerful-island-42597.herokuapp.com/",
     :user_name => "postmaster@mg.medbot.me",
     :password => ENV["MG_PASSWORD"]
   }
