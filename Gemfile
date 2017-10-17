@@ -28,7 +28,6 @@ gem 'font-awesome-sass', '~> 4.5.0'
 gem 'high_voltage', '~> 3.0.0'
 gem 'simple_form'
 gem 'devise'
-# gem 'bootsy', :git => "https://github.com/volmer/bootsy.git", :branch => "bootstrap-4"
 gem 'summernote-rails', :git => "https://github.com/felixtriller/summernote-rails.git", :branch => "master"
 gem 'commontator', :git => "https://github.com/lml/commontator.git", :branch => "rails5"
 gem 'groupify'
@@ -41,6 +40,7 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
 end
 
 group :development do
