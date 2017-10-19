@@ -16,7 +16,7 @@
     li.timeline-inverted
       .timeline-badge = icon('pencil-square-o')
       .timeline-panel
-        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find(1), review: nil }
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 1), review: nil }
     li.timeline-inverted
       .timeline-badge.danger = icon('sign-out')
       .timeline-panel
@@ -34,7 +34,7 @@
     li.timeline-inverted
       .timeline-badge = icon('pencil-square-o')
       .timeline-panel
-        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find(2), review: nil }
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 2), review: nil }
     li.timeline-inverted
       .timeline-badge.danger = icon('sign-out')
       .timeline-panel
@@ -53,7 +53,7 @@
     li.timeline-inverted
       .timeline-badge = icon('pencil-square-o')
       .timeline-panel
-        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find(3), review: nil }
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 3), review: nil }
     li.timeline-inverted
       .timeline-badge.danger = icon('sign-out')
       .timeline-panel
