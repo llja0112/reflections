@@ -3,6 +3,8 @@
   hr
   .row
     .col-md-6
+      p.text-center
+        strong Completed Reviews
       - if @complete_reviews.empty?
         .jumbotron.text-center
           = icon('square-o', class: 'fa-4x')
@@ -13,6 +15,8 @@
           .mb-3
             = render partial: "layouts/reflections/reflection_card", locals: {reflection: review.reflection, review: review}
     .col-md-6
+      p.text-center
+        strong Incomplete Reviews
       - if @incomplete_reviews.empty?
         .jumbotron.text-center
           = icon('check-square-o', class: 'fa-4x')

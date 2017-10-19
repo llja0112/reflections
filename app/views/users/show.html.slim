@@ -18,6 +18,8 @@
             = render partial: "layouts/reflections/reflection_card", locals: { reflection: reflection, review: nil }
 
     .col-md-6
+      p.text-center
+        strong Pending Reviews
       - if !@request_reflections.empty?
         .alert.alert-warning role="alert"
           span You have #{@request_reflections.count} reflections awaiting review! Click&nbsp;
