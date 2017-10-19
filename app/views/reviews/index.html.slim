@@ -7,9 +7,9 @@
         strong Completed Reviews
       - if @complete_reviews.empty?
         .jumbotron.text-center
-          = icon('square-o', class: 'fa-4x')
-          h3 You do not have any new incomplete reviews at the moment.
-          p.lead Ask your peers and mentees to send reflections to you for review.
+          = icon('check-square-o', class: 'fa-4x')
+          h3 You do not have any completed reviews at the moment.
+          p.lead Submitted reviews will be seen in this column.
       - else
         - @complete_reviews.each do |review|
           .mb-3
@@ -19,9 +19,9 @@
         strong Incomplete Reviews
       - if @incomplete_reviews.empty?
         .jumbotron.text-center
-          = icon('check-square-o', class: 'fa-4x')
-          h3 You do not have any completed reviews at the moment.
-          p.lead Submitted reviews will be seen in this column.
+          = icon('square-o', class: 'fa-4x')
+          h3 You do not have any new incomplete reviews at the moment.
+          p.lead Ask your peers and mentees to send reflections to you for review.
       - else
         - @incomplete_reviews.each do |review|
           .mb-3
