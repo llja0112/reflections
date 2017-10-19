@@ -5,13 +5,14 @@
       p.card-text = @reflection.story.html_safe
       p.card-text
       - if @reflection.privacy == "Private"
-        | This is a&nbsp;
-        strong #{icon('lock')} #{@reflection.privacy}&nbsp;
-        | reflection&nbsp;
+        span.badge.badge-success
+          strong #{icon('lock')} #{@reflection.privacy}&nbsp;
+          | reflection&nbsp;
         - if @reflection.authorised_personals.empty?
           | which is currently not shared with anyone.
         - else
-          | which is currently shared with&nbsp;
+          br
+          span Shared with&nbsp;
           - @reflection.authorised_personals.each do |personal|
             span.badge.badge-primary #{personal.name}
             | &nbsp;
@@ -22,11 +23,13 @@
       p.card-text
         small.text-muted Created on #{@reflection.created_at.strftime("%-d %B %Y")} by #{@reflection.user.name}
 
-      a.card-link.btn.btn-sm.btn-secondary href=reflections_path Back to Reflections list
-      - if user_signed_in?
-        a.card-link.btn.btn-sm.btn-light href=edit_reflection_path(@reflection) Edit reflection
-        a.card-link.btn.btn-sm.btn-light href=reflection_privacy_path(@reflection) Privacy
-        a.card-link.btn.btn-sm.btn-light href=reflection_review_path(@reflection) Submissions
+      .btn-group
+        a.btn.btn-sm.btn-secondary href=reflections_path Back
+        - if user_signed_in?
+          a.btn.btn-sm.btn-light href=edit_reflection_path(@reflection)
+            span Edit
+          a.btn.btn-sm.btn-light href=reflection_privacy_path(@reflection) Privacy
+          a.btn.btn-sm.btn-light href=reflection_review_path(@reflection) Submissions
 
   - if !@reflection_reviews.empty?
     #reviews_section

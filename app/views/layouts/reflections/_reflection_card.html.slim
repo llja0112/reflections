@@ -9,18 +9,19 @@
     p.card-text
       small.text-muted Written by #{reflection.user.name} on #{reflection.created_at.strftime("%-d %B %Y")}
 
-    - if user_signed_in? && !review.nil?
-      a.card-link.btn.btn-sm.btn-warning.mr-2 href=review_path(review) Review
-    a.btn.btn-sm.btn-primary.mr-2 href=reflection_path(reflection) Read More
-    a.btn.btn-sm.btn-light.mr-2 href="#{reflection_path(reflection)}#comments_section"
-      - if reflection.thread.comments.count < 1
-        span Comments
-      - else
-        span.badge.badge-secondary #{reflection.thread.comments.count}
-        | &nbsp;Comments
-    - if user_signed_in? && reflection.user == current_user
-      button.btn.btn-sm.btn-light.dropdown-toggle type="button" id="cardOptionsDrowndown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #{icon('cog')} Settings
-      .dropdown-menu.dropdown-menu aria-labelledby="cardOptionsDropdown"
-        a.dropdown-item.small href=edit_reflection_path(reflection) Edit reflection
-        a.dropdown-item.small href=reflection_privacy_path(reflection) Privacy
-        a.dropdown-item.small href=reflection_review_path(reflection) Submissions
+    .btn-group
+      - if user_signed_in? && !review.nil?
+        a.card-link.btn.btn-sm.btn-warning href=review_path(review) Review
+      a.btn.btn-sm.btn-primary href=reflection_path(reflection) Read More
+      a.btn.btn-sm.btn-light href="#{reflection_path(reflection)}#comments_section"
+        - if reflection.thread.comments.count < 1
+          span Comments
+        - else
+          span.badge.badge-secondary #{reflection.thread.comments.count}
+          | &nbsp;Comments
+      - if user_signed_in? && reflection.user == current_user
+        button.btn.btn-sm.btn-light.dropdown-toggle type="button" id="cardOptionsDrowndown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #{icon('cog')} Settings
+        .dropdown-menu.dropdown-menu aria-labelledby="cardOptionsDropdown"
+          a.dropdown-item.small href=edit_reflection_path(reflection) Edit reflection
+          a.dropdown-item.small href=reflection_privacy_path(reflection) Privacy
+          a.dropdown-item.small href=reflection_review_path(reflection) Submissions
