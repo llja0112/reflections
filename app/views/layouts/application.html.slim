@@ -8,7 +8,7 @@ html [lang='en']
     = csrf_meta_tags
   body [ class =page_class ]
     == render 'layouts/components/header'
-    #main_container.mb-3.pb-3
+    #main_container
       #main
         main[role="main"]
           == render 'layouts/components/messages'

@@ -6,11 +6,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(user_id_params)
-    @reflections = @user.reflections.order('updated_at DESC')
     if user_signed_in?
+      @reflections = @user.reflections.order('updated_at DESC')
       @request_reflections = current_user.request_reflections.order('updated_at DESC')
       reflections_ids = @reflections.map{|reflection| reflection.id}
       @review_requests = Review.where(reflection_id: reflections_ids)
+    else
+      @reflections = @user.reflections.order('updated_at DESC').where(privacy: 1)
     end
   end
 
