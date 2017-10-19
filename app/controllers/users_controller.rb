@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def index
   end
@@ -7,9 +7,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(user_id_params)
     @reflections = @user.reflections.order('updated_at DESC')
-    @request_reflections = current_user.request_reflections.order('updated_at DESC')
-    reflections_ids = @reflections.map{|reflection| reflection.id}
-    @review_requests = Review.where(reflection_id: reflections_ids)
+    if user_signed_in?
+      @request_reflections = current_user.request_reflections.order('updated_at DESC')
+      reflections_ids = @reflections.map{|reflection| reflection.id}
+      @review_requests = Review.where(reflection_id: reflections_ids)
+    end
   end
 
   def update

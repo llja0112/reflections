@@ -1,55 +1,68 @@
 .container.mb-2
-  .lead.text-center.mt-2 #{current_user.name}'s Dashboard
-  hr
-  .row
-    .col-md-6
-      - if @reflections.empty?
-        .jumbotron.text-center
-          = icon('clone', class: 'fa-4x')
-          h3 We cannot find any reflections that belong to you.
-          p.lead Click the button below to start creating a reflection.
-          a.btn.btn-primary href=add_reflection_path Create a reflection
-      - else
-        .row
-          .col-md-12
-            a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
+  - if user_signed_in?
+    .lead.text-center.mt-2 #{current_user.name}'s Dashboard
+    hr
+    .row
+      .col-md-6
+        - if @reflections.empty?
+          .jumbotron.text-center
+            = icon('clone', class: 'fa-4x')
+            h3 We cannot find any reflections that belong to you.
+            p.lead Click the button below to start creating a reflection.
+            a.btn.btn-primary href=add_reflection_path Create a reflection
+        - else
+          .row
+            .col-md-12
+              a.btn.btn-light.col-xs-12.col-sm-12.col-md-12.mb-3 href=add_reflection_path #{icon('plus')} Create new reflection
+          - @reflections.each do |reflection|
+            .mb-3
+              = render partial: "layouts/reflections/reflection_card", locals: { reflection: reflection, review: nil }
+
+      .col-md-6
+        p.text-center
+          strong Pending Reviews
+        - if !@request_reflections.empty?
+          .alert.alert-warning role="alert"
+            span You have #{@request_reflections.count} reflections awaiting review! Click&nbsp;
+            a.btn.btn-warning.btn-sm href=reviews_path Review
+            span &nbsp;to begin!
+
+        - if !@review_requests.empty?
+          - @review_requests.each do |review_request|
+            - reflection = @reflections.find {|r| r.id == review_request.reflection_id }
+            .mb-3
+              .card.border-warning
+                .card-body
+                  - if review_request.status == "Incomplete"
+                    span.badge.badge-warning Incomplete Review
+                    .lead.my-2
+                      span You have requested&nbsp;
+                      strong = review_request.reviewer.name
+                      span &nbsp;to review:&nbsp;
+                      span.text-primary = reflection.title
+                    a.btn.btn-warning.btn-sm href=reflection_review_path(reflection) View Review Settings
+                  - else
+                    span.badge.badge-primary Complete Review
+                    .lead.my-2
+                      strong = review_request.reviewer.name
+                      span &nbsp;has completed the review for:&nbsp;
+                      span.text-primary = reflection.title
+                    p.card-text = strip_tags(review_request.content).truncate_words(100)
+                    a.btn.btn-sm.btn-primary href="#{reflection_path(reflection)}#reviews_section" View Review
+        - else
+          .jumbotron.text-center
+            = icon('paper-plane', class: 'fa-4x')
+            h3 No reflection review submissions found.
+            p.lead Submit reflections to peers and mentors for review to populate this section.
+  - else
+    .lead.text-center.mt-2 #{@user.name}'s Reflections
+    hr
+    - if @reflections.empty?
+      .jumbotron.text-center.mt-3
+        = icon('clone', class: 'fa-4x')
+        h3 We cannot find any reflections from this user that are currently visisble to you.
+        p.lead Do you know this user personally? You might want to ask him to change his reflection's privacy setting to public.
+    - else
+      .card-columns.mt-3
         - @reflections.each do |reflection|
-          .mb-3
-            = render partial: "layouts/reflections/reflection_card", locals: { reflection: reflection, review: nil }
-
-    .col-md-6
-      p.text-center
-        strong Pending Reviews
-      - if !@request_reflections.empty?
-        .alert.alert-warning role="alert"
-          span You have #{@request_reflections.count} reflections awaiting review! Click&nbsp;
-          a.btn.btn-warning.btn-sm href=reviews_path Review
-          span &nbsp;to begin!
-
-      - if !@review_requests.empty?
-        - @review_requests.each do |review_request|
-          - reflection = @reflections.find {|r| r.id == review_request.reflection_id }
-          .mb-3
-            .card.border-warning
-              .card-body
-                - if review_request.status == "Incomplete"
-                  span.badge.badge-warning Incomplete Review
-                  .lead.my-2
-                    span You have requested&nbsp;
-                    strong = review_request.reviewer.name
-                    span &nbsp;to review:&nbsp;
-                    span.text-primary = reflection.title
-                  a.btn.btn-warning.btn-sm href=reflection_review_path(reflection) View Review Settings
-                - else
-                  span.badge.badge-primary Complete Review
-                  .lead.my-2
-                    strong = review_request.reviewer.name
-                    span &nbsp;has completed the review for:&nbsp;
-                    span.text-primary = reflection.title
-                  p.card-text = strip_tags(review_request.content).truncate_words(100)
-                  a.btn.btn-sm.btn-primary href="#{reflection_path(reflection)}#reviews_section" View Review
-      - else
-        .jumbotron.text-center
-          = icon('paper-plane', class: 'fa-4x')
-          h3 No reflection review submissions found.
-          p.lead Submit reflections to peers and mentors for review to populate this section.
+          = render partial: "layouts/reflections/reflection_card", locals: {reflection: reflection, review: !@review_reflection_ids.nil? && @review_reflection_ids.include?(reflection.id) ? reflection.reflection_reviews.first :  nil }
