@@ -42,9 +42,14 @@ class ReflectionsController < ApplicationController
 
   def update
     r = Reflection.find(reflection_id_params)
-    r.title = reflection_params['title']
-    r.story = reflection_params['story']
-    r.save
+    if r.user == current_user
+      r.title = reflection_params['title']
+      r.story = reflection_params['story']
+      r.save
+      flash[:notice] = 'Reflection successfully updated!'
+    else
+      flash[:notice] = 'You do not have the rights to edit this reflection!'
+    end
     redirect_to reflection_path(r)
   end
 
@@ -106,8 +111,13 @@ class ReflectionsController < ApplicationController
 
   def update_privacy
     r = Reflection.find(reflection_id_params)
-    r.privacy = reflection_privacy_params
-    r.save
+    if r.user == current_user
+      r.privacy = reflection_privacy_params
+      r.save
+      flash[:notice] = 'Privacy settings successfully udated!'
+    else
+      flash[:notice] = 'You do not have the rights to edit the privacy setting for this reflection.'
+    end
     redirect_to :back
   end
 
