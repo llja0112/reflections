@@ -12,11 +12,45 @@
         .timeline-body
           h4
             span Start of&nbsp;
-            span.text-primary LIC Block 2
+            span.text-primary LIC Block 1
     li.timeline-inverted
       .timeline-badge = icon('pencil-square-o')
       .timeline-panel
         = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 1), review: nil }
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 10), review: nil }
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 6), review: nil }
+    li.timeline-inverted
+      .timeline-badge.danger = icon('sign-out')
+      .timeline-panel
+        .timeline-body
+          h4
+            span End of&nbsp;
+            span.text-danger LIC Block 1
+    li.timeline-inverted
+      .timeline-badge.primary = icon('sign-in')
+      .timeline-panel
+        .timeline-body
+          h4
+            span Start of&nbsp;
+            span.text-primary LIC Block 2
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 2), review: nil }
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 9), review: nil }
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 7), review: nil }
     li.timeline-inverted
       .timeline-badge.danger = icon('sign-out')
       .timeline-panel
@@ -24,6 +58,7 @@
           h4
             span End of&nbsp;
             span.text-danger LIC Block 2
+
     li.timeline-inverted
       .timeline-badge.primary = icon('sign-in')
       .timeline-panel
@@ -34,7 +69,11 @@
     li.timeline-inverted
       .timeline-badge = icon('pencil-square-o')
       .timeline-panel
-        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 2), review: nil }
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 4), review: nil }
+    li.timeline-inverted
+      .timeline-badge = icon('pencil-square-o')
+      .timeline-panel
+        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 8), review: nil }
     li.timeline-inverted
       .timeline-badge.danger = icon('sign-out')
       .timeline-panel
@@ -42,25 +81,6 @@
           h4
             span End of&nbsp;
             span.text-danger LIC Block 3
-
-    li.timeline-inverted
-      .timeline-badge.primary = icon('sign-in')
-      .timeline-panel
-        .timeline-body
-          h4
-            span Start of&nbsp;
-            span.text-primary LIC Block 4
-    li.timeline-inverted
-      .timeline-badge = icon('pencil-square-o')
-      .timeline-panel
-        = render partial: "layouts/reflections/reflection_card", locals: { reflection: Reflection.find_by(id: 4), review: nil }
-    li.timeline-inverted
-      .timeline-badge.danger = icon('sign-out')
-      .timeline-panel
-        .timeline-body
-          h4
-            span End of&nbsp;
-            span.text-danger LIC Block 4
 
 .bg-success.text-white
   .container.py-5
